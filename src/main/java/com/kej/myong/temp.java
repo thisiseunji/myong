@@ -31,7 +31,31 @@ public class temp {
 		return "style/styleDetailView";
 	}
 	
+	@RequestMapping("appointment")
+	public String reservationPage() {
+		return "appointment/appointmentView"; 
+	}
 	
+	// admin member
+	@RequestMapping("admin/login")
+	public String adminLoginPage() {
+		return "admin/member/loginView";
+	}
+	
+	@RequestMapping("admin/register")
+	public String adminMemberRegisterPage() {
+		return "admin/member/registerView";
+	}
+	
+	@RequestMapping("admin/myInfo")
+	public String adminInfoPage() {
+		return "admin/member/infoView";
+	}
+	
+	@RequestMapping("date")
+	public String dateTestPage() {
+		return "admin/member/dateTest";
+	}
 
 }
 
