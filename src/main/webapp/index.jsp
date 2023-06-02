@@ -23,7 +23,7 @@
         <div class="carousel-inner" role="listbox">
 
           <!-- Slide 1 -->
-          <div class="carousel-item active" style="background-image: url(resourcess/img/slide/slide-1.jpg)">
+          <div class="carousel-item active" style="background-image: url(resources/img/slide/slide-1.jpg)">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Eterna</span></h2>
