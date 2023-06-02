@@ -123,18 +123,13 @@
 						 	<h4 class="mb-3 mt-0">비정기 휴일 지정</h4>
 							<!-- https://getdatepicker.com/6/options/localization.html -->
 							<div class='input-group' id='datetimepicker1' data-td-target-input='nearest' data-td-target-toggle='nearest'>
-							   <input id='datetimepicker1Input' type='text' class='form-control' data-td-target='#datetimepicker1'/>
+							   <input id='datetimepicker1Input' type='text' class='form-control' data-td-target='#datetimepicker1' readonly/>
 							   <span class='input-group-text' data-td-target='#datetimepicker1' data-td-toggle='datetimepicker'>
 							   		<span class='fa fa-solid fa-calendar'></span>
 							   </span>
 						    </div>
 						   <div id="selected-dates" class="mt-3 mb-5">
 						   		<ul class="list-group">
-								  <li class="list-group-item" id="index로 아이디 줘야한다.">
-								   
-								    <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-								    <button type="button" class="float-end btn-close" aria-label="Close"></button>
-								  </li>
 								</ul>
 						   </div>						
 						</div>
@@ -150,6 +145,13 @@
    <%@ include file="../../common/footer.jsp" %>
    
    <script type="text/javascript">
+   
+		const minDate = new Date();
+		minDate.setDate(minDate.getDate() + 14);
+		
+	 	const maxDate = new Date();
+	 	maxDate.setMonth(maxDate.getMonth() + 12);
+	 	
 		const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
 			    display: { 
 			        components: {
@@ -170,10 +172,16 @@
 			            close: 'fas fa-solid fa-xmark'
 			        },
 			    },
-			    stepping : 30,
 				restrictions: {
-					daysOfWeekDisabled: []
-				}, 
+					daysOfWeekDisabled: [], // 정기 휴일 지정시 해당 요일이 비활성화 되도록 하고싶음.
+				    minDate: minDate,
+				    maxDate: maxDate,
+				},
+			  	localization: {
+				    locale: 'KR',
+				    format: 'yyyy년 M d일'
+				},
+				
 		});
 		
 		// 옵션 설정이 안 된다. 정기 휴일은 막고싶은데. 사실 안 막아도 기능상 문제는 없지만 진짜... 후아
@@ -204,6 +212,26 @@
 	   			
    				$('#count_message').html(text_length + ' / ' + text_max);
 	   		});
+   			
+   			
+   			let idx = 0; // 일종의 index
+   			$('#datetimepicker1Input').on('change', function(){
+   	   			// 날짜를 선택하면 input의 value를 목록에 추가
+   	   			let newDate = $(this).val();
+   	   			
+   	   			let result = $('.list-group').html();
+   	   			
+   	   			idx++
+   	   			result += '<li class="list-group-item" id="li' + idx + '">'
+			           + '<label class="form-check-label">'+ newDate +'</label>'
+			           + '<button type="button" class="float-end btn-close delx" aria-label="Close" id="btn'+ idx +'"></button>'
+			           + '</li>'
+			    
+			   $('.list-group').html(result);
+   	   		   console.log($('.list-group').html());
+			  
+   			});
+			
 	    });	
    </script>
 </body>

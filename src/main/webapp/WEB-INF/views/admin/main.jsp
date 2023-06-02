@@ -7,6 +7,5 @@
 <title>관리자>메인</title>
 </head>
 <body>
-	
-</body>
+	<%@ include file="../../common/header.jsp" %>
 </html>
