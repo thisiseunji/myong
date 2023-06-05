@@ -16,8 +16,8 @@
 		version : .war 파일의 버전
 	-->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.kh</groupId>
-	<artifactId>spring</artifactId>
+	<groupId>com.kej</groupId>
+	<artifactId>myong</artifactId>
 	<name>Spring_Project</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
