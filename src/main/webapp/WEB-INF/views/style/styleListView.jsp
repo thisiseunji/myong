@@ -24,10 +24,10 @@
       <div class="container">
 
         <ol>
-          <li><a href="/">Home</a></li>
-          <li>Portfolio</li>
+          <li><a href="/">홈</a></li>
+          <li>서비스</li>
         </ol>
-        <h2>Portfolio</h2>
+        <h2>서비스 목록</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -35,17 +35,38 @@
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
-
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
+	     <section id="category" class="category container row mt-5">
+			<div class="input-group col">
+			  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			    <option selected>전체</option>
+			    <option value="hair">헤어</option>
+			    <option value="makeup">메이크업</option>
+			    <option value="nail">네일</option>
+			  </select>
+			  <button class="btn btn-outline-secondary" type="button">적용</button>
+			</div>
+			<div class="input-group col">
+			  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			    <option selected>전체</option>
+			    <option value="1">숏</option>
+			    <option value="2">미디움</option>
+			    <option value="3">롱</option>
+			    <option value="1">컬러</option>
+			    <option value="2">펌</option>
+			    <option value="3">드라이</option>
+			  </select>
+			  <button class="btn btn-outline-secondary" type="button">적용</button>
+			</div>
+			<div class="input-group col">
+			  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			    <option selected>예약 많은 순</option>
+			    <option value="1">후기 많은 순</option>
+			    <option value="2">가격 낮은 순</option>
+			    <option value="3">가격 높은 순</option>
+			  </select>
+			  <button class="btn btn-outline-secondary" type="button">적용</button>
+			</div>
+	  	</section>
 
         <div class="row portfolio-container">
 

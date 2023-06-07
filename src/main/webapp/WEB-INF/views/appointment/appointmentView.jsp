@@ -61,42 +61,45 @@ span.fa-calendar {
       <div class="container">
 
         <ol>
-          <li><a href="/">Home</a></li>
-          <li>Reservation</li>
+          <li><a href="/">홈</a></li>
+          <li>예약</li>
         </ol>
-        <h2>Reservation</h2>
+        <h2>예약</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
   
-	<form>
+	<form method="post" action="/*">
   	<section id="portfolio-details" class="portfolio-details">
   		<div class="container">
   			<!-- 탭 메뉴 -->
 			<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
 			  <li class="nav-item" role="presentation">
-			    <button class="nav-link active" id="custom-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-selected="true">고객정보 입력</button>
+			    <button class="nav-link active" id="customer-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-selected="true">고객정보 입력</button>
 			  </li>
 			  <li class="nav-item" role="presentation">
 			    <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-selected="false">일정 및 디자이너 선택</button>
 			  </li>
 			  <li class="nav-item" role="presentation">
-			    <button class="nav-link" id="designer-tab" data-bs-toggle="tab" data-bs-target="#designer" type="button" role="tab" aria-controls="profile" aria-selected="false">스타일 선택</button>
+			    <button class="nav-link" id="style-tab" data-bs-toggle="tab" data-bs-target="#style" type="button" role="tab" aria-selected="false">스타일 선택</button>
 			  </li>
 			  <li class="nav-item" role="presentation">
-			    <button class="nav-link" id="style-tab" data-bs-toggle="tab" data-bs-target="#style" type="button" role="tab" aria-controls="contact" aria-selected="false">예약내역 확인</button>
+			    <button class="nav-link" id="appointment-tab" data-bs-toggle="tab" data-bs-target="#appointment" type="button" role="tab" aria-selected="false">예약내역 확인</button>
 			  </li>
 			</ul>
 			
 			<div class="tab-content d-flex justify-content-center" id="myTabContent">
-			  <div class="tab-pane fade show active" id="customer" role="tabpanel" aria-labelledby="custom-tab">
+			  <div class="tab-pane fade show active" id="customer" role="tabpanel" aria-labelledby="customer-tab">
 				<!-- ======= Sign In Section ======= -->
                	<div class="mt-5"> 
                   	<input class="form-control mb-2" type="text" placeholder="휴대폰 번호를 입력하세요." name="phone"/>
                 	<input class="form-control mb-3" type="text" placeholder="성함을 입력하세요." name="name"/>
-                	<button class="nav-link btn float-end pe-1" id="schedule-tab" data-bs-target="#schedule" data-bs-toggle="tab" role="tab" type="button" onclick="changeTab('schedule')">
-					 	다음 <i class="bi bi-arrow-right"></i>
-					</button>
+                	<section id="move1">
+	                	<button class="nav-link btn float-end pe-1" id="schedule-tab" data-bs-target="#schedule" data-bs-toggle="tab" role="tab" type="button" onclick="changeTab('schedule')">
+						 	다음  <i class="bi bi-arrow-right"></i>
+						</button>
+                	</section>
+
 				</div>
 	          </div>
 			  
@@ -143,9 +146,7 @@ span.fa-calendar {
 				          </div>
 				 		달력으로 일정 선택하면 -> 시간이 뜨고, 시간 선택하면 -> 선택 가능한 디자이너가 나오도록 구현 
 					</div>
-				 
 				</section>
-				
 				<section id="team" class="team">
 					<div class="container mt-3">
 						<div class="row">
@@ -160,17 +161,83 @@ span.fa-calendar {
           					</div>
           				</div>
 					</div>
-				</section> 
-				 
-				 
+				</section>
+				<section id="move2">
+					<button class="nav-link btn float-start pe-1" id="customer-tab" data-bs-target="#customer" data-bs-toggle="tab" role="tab" type="button" onclick="changeTab('customer')">
+					 	<i class="bi bi-arrow-left"></i>  이전
+					</button>
+				   <button class="nav-link btn float-end pe-1" id="style-tab" data-bs-target="#style" data-bs-toggle="tab" role="tab" type="button" onclick="changeTab('style')">
+					 	다음  <i class="bi bi-arrow-right"></i>
+					</button>
+				</section>  
 			  </div>
-			  <div class="tab-pane fade" id="designer" role="tabpanel" aria-labelledby="designer-tab">
-
+			  
+			  <div class="tab-pane fade container" id="style" role="tabpanel" aria-labelledby="style-tab">
+				<section id="category" class="category container row mt-5">
+				  		<div class="input-group col">
+						  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+						    <option selected>전체</option>
+						    <option value="hair">헤어</option>
+						    <option value="makeup">메이크업</option>
+						    <option value="nail">네일</option>
+						  </select>
+						  <button class="btn btn-outline-secondary" type="button">적용</button>
+						</div>
+				  		<div class="input-group col">
+						  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+						    <option selected>전체</option>
+						    <option value="1">숏</option>
+						    <option value="2">미디움</option>
+						    <option value="3">롱</option>
+						    <option value="1">컬러</option>
+						    <option value="2">펌</option>
+						    <option value="3">드라이</option>
+						  </select>
+						  <button class="btn btn-outline-secondary" type="button">적용</button>
+						</div>
+				  		<div class="input-group col">
+						  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+						    <option selected>예약 많은 순</option>
+						    <option value="1">후기 많은 순</option>
+						    <option value="2">가격 낮은 순</option>
+						    <option value="3">가격 높은 순</option>
+						  </select>
+						  <button class="btn btn-outline-secondary" type="button">적용</button>
+						</div>
+				  	</section>
+				
+			  	<div class="container mt-5 mb-5 row d-flex justify-content-center">
+				  	<button for class="btn btn-primary col-6" type="submit">
+				    	예약 하기
+				    </button>
+			  	</div>
+	
+				<section id="move3">
+					<button class="nav-link btn float-start pe-1" id="schedule-tab" data-bs-target="#schedule" data-bs-toggle="tab" role="tab" type="button" onclick="changeTab('schedule')">
+					 	<i class="bi bi-arrow-left"></i>  이전
+					</button>
+		
+				</section>	
 			  </div>
-			  <div class="tab-pane fade" id="style" role="tabpanel" aria-labelledby="style-tab">...</div>
+			  
+				<div class="tab-pane fade container" id="appointment" role="tabpanel" aria-labelledby="appointment-tab">
+					<div class="container mt-5">
+						<div class="row col text-end">
+							<div class="col-5 row">
+								<label for="phone" class="form-label col-3 ms-0 mt-2 me-2">휴대폰 번호</label>
+								<input id="phone" class="form-control col" type="text" placeholder="ex) 010-0000-0000" aria-label="default input example">
+							</div>
+							<div class="col-5 row">
+								<label for="name" class="form-label col-2 mt-2 me-2">이름</label>
+								<input id="name" class="form-control col ms-0" type="text" placeholder="김은지" aria-label="default input example">
+							</div>
+							<button class="col-2 btn btn-primary ms-4 me-0">예약내역 확인</button>
+						</div>
+				    </div>
+				</div>			
 			</div>
-  		</div>
-  	</section>
+		</div>
+	</section>
   	</form>
   </main>
   	
