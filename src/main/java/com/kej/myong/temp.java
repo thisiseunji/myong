@@ -56,6 +56,11 @@ public class temp {
 	public String dateTestPage() {
 		return "admin/member/dateTest";
 	}
+	
+	@RequestMapping("reply")
+	public String replyPage() {
+		return "reply/writeView";
+	}
 
 }
 
