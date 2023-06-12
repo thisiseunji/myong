@@ -242,6 +242,7 @@ span.fa-calendar {
   </main>
   	
   <%@ include file="../common/footer.jsp" %>
+  
  	<script>
 	 	const today = new Date();
 	 	today.setDate(today.getDate());

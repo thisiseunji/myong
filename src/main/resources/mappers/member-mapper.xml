@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="memberMapper">
+	<resultMap id="memberResultSet" type="member">
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="MEMBER_PWD" property="memberPwd"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="NICKNAME" property="nickname"/>
+		<result column="PROFILE_IMG" property="profileImg"/>
+		<result column="POSITION" property="position"/>
+		<result column="TITLE" property="title"/>
+		<result column="SUBJECT" property="subject"/>
+		<result column="DESCRIPTION" property="description"/>
+		<result column="PHONE" property="phone"/>
+		<result column="CHARGE_RATE" property="chargeRate"/>
+		<result column="DAY_OFF" property="dayOff"/>
+		<result column="START_TIME" property="startTime"/>
+		<result column="END_TIME" property="endTime"/>
+		<result column="EFFECTIVE_DATE" property="effectiveDate"/>
+		<result column="IS_DELETED" property="isDeleted"/>
+	</resultMap>
+
+
+	<!-- 디자이너 생성용 쿼리문 -->
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO TB_MEMBER (MEMBER_NO
+						 , MEMBER_ID
+						 , MEMBER_PWD
+						 , MEMBER_NAME
+					     , POSITION
+						 , TITLE
+						 , CHARGE_RATE
+						 , EFFECTIVE_DATE
+						 , IS_DELETED)
+					VALUES(SEQ_MEM.NEXTVAL
+						 , #{memberId}
+					     , #{memberPwd}
+					     , #{memberName}
+					     , #{position}
+					     , #{title}
+					     , #{chargeRate}
+					     , #{effectiveDate}
+					     , 	DEFAULT)
+	</insert>
+
+</mapper>
