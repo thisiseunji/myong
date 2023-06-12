@@ -21,4 +21,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.insertMember(sqlSession, m);
 	}
 
+	@Override
+	public int checkId(String checkId) {
+		return memberDao.checkId(sqlSession, checkId);
+	}
+
 }

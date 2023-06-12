@@ -22,7 +22,6 @@
 		<result column="IS_DELETED" property="isDeleted"/>
 	</resultMap>
 
-
 	<!-- 디자이너 생성용 쿼리문 -->
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO TB_MEMBER (MEMBER_NO
@@ -34,7 +33,7 @@
 						 , CHARGE_RATE
 						 , EFFECTIVE_DATE
 						 , IS_DELETED)
-					VALUES(SEQ_MEM.NEXTVAL
+				    VALUES (SEQ_MEM.NEXTVAL
 						 , #{memberId}
 					     , #{memberPwd}
 					     , #{memberName}
@@ -44,5 +43,11 @@
 					     , #{effectiveDate}
 					     , 	DEFAULT)
 	</insert>
+	
+	<select id="checkId" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		  FROM TB_MEMBER
+		 WHERE MEMBER_ID = #{checkId}
+	</select>
 
 </mapper>

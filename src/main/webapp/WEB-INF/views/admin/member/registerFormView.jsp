@@ -7,7 +7,8 @@
 <title>디자이너 등록</title>
 </head>
 <body>
-	<%@ include file="../../common/header.jsp" %>
+	<jsp:include page="../../admin/common/header.jsp" />
+	
 	<main id="main">
 	    <!-- ======= Breadcrumbs ======= -->
 	    <section id="breadcrumbs" class="breadcrumbs">
@@ -24,12 +25,12 @@
  		<!-- 디자이너 등록 정보 입력 -->
  		<section id="member-register" class="member-register">
  			<div class="container mt-5 mb-5">
- 				<!-- 왜 이 액션이 admin/register로 바로 가지? -->
- 				<form class="d-flex flex-column justify-content-md-center align-items-center" method="post" action="register">
+ 				<form class="d-flex flex-column justify-content-md-center align-items-center" id="enrollForm" method="post" action="register">
 					<div class="form-floating mb-3 col-5">
 					  <!-- is-invalid로 부적절 사용 가능  -->
 					  <input type="text" class="form-control is-invalid" id="memberId" placeholder="designer01" name="memberId">
 					  <label for="memberId">아이디</label>
+					  <div id="checkResult" style="font-size : 0.8em; display : none"></div>
 					</div>
 					<div class="form-floating mb-3 col-5">
 					  <input type="password" class="form-control" id="memberPwd" placeholder="Password" name="memberPwd">
@@ -50,7 +51,7 @@
 					 </div>
 					 <div class="form-floating mb-3 col-5">
 					  <select class="form-select" id="title" aria-label="Floating label select example" name="title"> 
-					  	<option selected value="-">-</option>.
+					  	<option selected value="-">-</option>
 					    <option value="매니저">매니저</option>
 					    <option value="실장">실장</option>
 					    <option value="점장">점장</option>
@@ -59,21 +60,50 @@
 					  <label for="title">직책</label>
 					 </div>
 					 <div class="form-floating mb-3 col-5">
-						<input type="text" class="form-control" id="chargeRate" placeholder="chargeRate" name="chargeRate"/>
+						<input type="text" class="form-control" id="chargeRate" placeholder="10" name="chargeRate" value=30 />
 						<label for="chargeRate">수수료비율</label>
 					 </div>
 					 <div class="form-floating col-5 mb-3">
-						<input type="date" class="form-control pt-3" id="effectiveDate" name="effectiveDates"/>
+						<input type="date" class="form-control pt-3" id="effectiveDate" name="effectiveDate"/>
 						<label for="effectiveDate">입사일</lable>
 					 </div>
 					 <div class="form-floating mb-3 col-5">
-					 	<button type="submit" class="form-control btn btn-dark pt-3">등록하기</button>
+					 	<button type="submit" class="form-control btn btn-secondary pt-3" disabled="true">등록하기</button>
 					 </div>
  				</form>
  			</div>
  		</section>
     </main>
-    <%@ include file="../../common/footer.jsp" %>
+    <script>
+    	$(function() {
+    		// jquery로 선택한 요소라는 표시로 $기호를 사용한다.
+
+    		const $idInput = $("#enrollForm input[name=memberId]");
+			
+    		// 키 입력시마다 아이디 중복검사
+    		$idInput.keyup(function() {
+    			$.ajax({
+    				url : "register/checkid",
+					data : {checkId : $idInput.val()},
+					type : "get",
+    				success : function(result) {
+    					if (result <= 0) {
+    						$idInput.removeClass("is-invalid");
+    						$("#enrollForm button[type=submit]").attr("disabled", false).addClass("btn-dark").removeClass("btn-secondary");
+    						
+    					} else {
+    						$idInput.addClass("is-invalid");
+    						$("#enrollForm button[type=submit]").attr("disabled", true).addClass("btn-secondary").removeClass("btn-dark");
+    					}
+    				}
+    			});
+    		});
+    		
+    	});
+    </script>
+    
+    
+    <jsp:include page="../../common/footer.jsp" />
     
 </body>
 </html>

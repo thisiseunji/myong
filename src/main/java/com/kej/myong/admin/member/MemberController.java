@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kej.myong.admin.member.model.service.MemberService;
 import com.kej.myong.admin.member.model.vo.Member;
@@ -40,13 +41,18 @@ public class MemberController {
 		
 		if (result == 0) {
 			session.setAttribute("alertMsg", "디자이너 등록 실패");
+			return "redirect:/admin/register";
 			
 		} else {
+			
 			session.setAttribute("alertMsg", "디자이너 등록 성공");
-
+			return "redirect:/";
 		}
-		return "redirect:/";
-
 	}
-
+	
+	@GetMapping(value="/checkid")
+	@ResponseBody
+	public int memberIdCheck(String checkId) {
+		return memberService.checkId(checkId);
+	}
 }

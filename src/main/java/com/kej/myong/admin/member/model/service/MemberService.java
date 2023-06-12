@@ -6,4 +6,6 @@ public interface MemberService {
 	
 	public abstract int insertMember(Member m);
 	
+	int checkId(String checkId);
+	
 }
