@@ -42,10 +42,7 @@ public class temp {
 		return "admin/member/loginView";
 	}
 	
-	@RequestMapping("admin/register")
-	public String adminMemberRegisterPage() {
-		return "admin/member/registerView";
-	}
+
 	
 	@RequestMapping("admin/myInfo")
 	public String adminInfoPage() {

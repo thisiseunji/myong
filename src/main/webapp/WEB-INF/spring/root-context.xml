@@ -42,8 +42,8 @@
 		<!-- 어느 DB 에 접속할건지 지정 -->
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="Myong" /> <!-- 수정 필 -->
-		<property name="password" value="Myong" />
+		<property name="username" value="MYONG" />
+		<property name="password" value="MYONG" />
 	</bean>
 	
 	<!-- 
@@ -51,8 +51,8 @@
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		dataSource.setUsername("Myong");
-		dataSource.setPassword("Myong");
+		dataSource.setUsername("MYONG");
+		dataSource.setPassword("MYONG");
 	-->
 	
 	<!-- 2단계. MyBatis Spring 에서 제공하는 SQL 명령어 실행을 위한 도구 등록 -->
