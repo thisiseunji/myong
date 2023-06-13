@@ -28,7 +28,7 @@
  				<form class="d-flex flex-column justify-content-md-center align-items-center" id="enrollForm" method="post" action="register">
 					<div class="form-floating mb-3 col-5">
 					  <!-- is-invalid로 부적절 사용 가능  -->
-					  <input type="text" class="form-control is-invalid" id="memberId" placeholder="designer01" name="memberId">
+					  <input type="text" class="form-control" id="memberId" placeholder="designer01" name="memberId">
 					  <label for="memberId">아이디(소문자, 숫자만 입력 가능)</label>
 					  <div id="checkResult" style="font-size : 0.8em; display : none"></div>					
 					</div>
@@ -75,8 +75,6 @@
  		</section>
     </main>
     <script>
-    
-    	// 버튼이 활성화 되지 않는 이유에 대한 alert
     	$(function() {
     		let isIdOk = false;
     		
@@ -100,7 +98,7 @@
 
     		
     		// 키 입력시마다 아이디 중복 및 유효성 검사 + 유효하지 않으면 버튼 비활성화
-    		const $idInput = $("#enrollForm input[name=memberId]");`
+    		const $idInput = $("#enrollForm input[name=memberId]");
 			
 			$idInput.keyup(function() {
    				if($idInput.val().length >= 1) {
