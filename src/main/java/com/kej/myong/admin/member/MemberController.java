@@ -1,5 +1,7 @@
 package com.kej.myong.admin.member;
 
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +51,42 @@ public class MemberController {
 			return "redirect:/";
 		}
 	}
-	
+	/*
+	// 아이디 유효성(숫자, 소문자만 입력 가능하도록) 및 중복 검
 	@GetMapping(value="/checkid")
 	@ResponseBody
 	public int memberIdCheck(String checkId) {
-		return memberService.checkId(checkId);
+		
+		final String ID_PATTERN = "^[a-z0-9]+$";
+
+	    Pattern pattern = Pattern.compile(ID_PATTERN);
+	    
+	    if (pattern.matcher(checkId).matches()) {
+	    	return memberService.checkId(checkId);
+	    } else {
+	    	return 1;
+	    }
+	    
+	}*/
+	
+	// 아이디 유효성(숫자, 소문자만 입력 가능하도록) 및 중복 검사
+	@GetMapping(value="/checkid", produces = "application/html; charset=utf-8")
+	@ResponseBody
+	public String memberIdCheck(String checkId) {
+		
+		final String ID_PATTERN = "^[a-z0-9]+$";
+
+	    Pattern pattern = Pattern.compile(ID_PATTERN);
+	    
+	    if (!pattern.matcher(checkId).matches()) {
+	    	return "문자";
+	    } else if (memberService.checkId(checkId) > 0) {
+	    	return "중복";
+	    } else {
+	    	return "유효";
+	    }
+	    
 	}
+	
+	
 }

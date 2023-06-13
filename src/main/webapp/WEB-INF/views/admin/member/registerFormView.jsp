@@ -29,8 +29,8 @@
 					<div class="form-floating mb-3 col-5">
 					  <!-- is-invalid로 부적절 사용 가능  -->
 					  <input type="text" class="form-control is-invalid" id="memberId" placeholder="designer01" name="memberId">
-					  <label for="memberId">아이디</label>
-					  <div id="checkResult" style="font-size : 0.8em; display : none"></div>
+					  <label for="memberId">아이디(소문자, 숫자만 입력 가능)</label>
+					  <div id="checkResult" style="font-size : 0.8em; display : none"></div>					
 					</div>
 					<div class="form-floating mb-3 col-5">
 					  <input type="password" class="form-control" id="memberPwd" placeholder="Password" name="memberPwd">
@@ -60,7 +60,7 @@
 					  <label for="title">직책</label>
 					 </div>
 					 <div class="form-floating mb-3 col-5">
-						<input type="text" class="form-control" id="chargeRate" placeholder="10" name="chargeRate" value=30 />
+						<input type="number" class="form-control" id="chargeRate" placeholder="10" name="chargeRate" value="0" min="0"/>
 						<label for="chargeRate">수수료비율</label>
 					 </div>
 					 <div class="form-floating col-5 mb-3">
@@ -75,30 +75,70 @@
  		</section>
     </main>
     <script>
+    
+    	// 버튼이 활성화 되지 않는 이유에 대한 alert
     	$(function() {
-    		// jquery로 선택한 요소라는 표시로 $기호를 사용한다.
-
-    		const $idInput = $("#enrollForm input[name=memberId]");
-			
-    		// 키 입력시마다 아이디 중복검사
-    		$idInput.keyup(function() {
-    			$.ajax({
-    				url : "register/checkid",
-					data : {checkId : $idInput.val()},
-					type : "get",
-    				success : function(result) {
-    					if (result <= 0) {
-    						$idInput.removeClass("is-invalid");
-    						$("#enrollForm button[type=submit]").attr("disabled", false).addClass("btn-dark").removeClass("btn-secondary");
-    						
-    					} else {
-    						$idInput.addClass("is-invalid");
-    						$("#enrollForm button[type=submit]").attr("disabled", true).addClass("btn-secondary").removeClass("btn-dark");
-    					}
-    				}
-    			});
-    		});
+    		let isIdOk = false;
     		
+    		$('#enrollForm input').keyup(function() {
+    		    var allFilled = true;
+
+    		    $('#enrollForm input').each(function() {
+    		      if ($(this).val() === '') {
+    		        allFilled = false;
+    		        return false;
+    		      }
+    		    });
+				
+    		    // 모든 입력값이 입력되지 않으면 버튼 비활성화
+    		    if (allFilled && isIdOk) {
+    		    	$("#enrollForm button[type=submit]").attr("disabled", false).addClass("btn-dark").removeClass("btn-secondary");
+    		    } else {
+    		    	$("#enrollForm button[type=submit]").attr("disabled", true).addClass("btn-secondary").removeClass("btn-dark");
+    		    }
+    		  });
+
+    		
+    		// 키 입력시마다 아이디 중복 및 유효성 검사 + 유효하지 않으면 버튼 비활성화
+    		const $idInput = $("#enrollForm input[name=memberId]");`
+			
+			$idInput.keyup(function() {
+   				if($idInput.val().length >= 1) {
+   					$.ajax({
+   	       				url : "register/checkid",
+   	   					data : {checkId : $idInput.val()},
+   	   					type : "get",
+   	       				success : function(result) {
+   	       					console.log("result : " + result);
+   	       					if (result==="유효") {
+   	       						$idInput.removeClass("is-invalid");
+   	       						$("#checkResult").hide();
+   	       						isIdOk = true;
+   	       					} else {
+   	       						$idInput.addClass("is-invalid");
+   	       						if (result==="문자") {
+   	   	       						$("#checkResult").text("유효하지 않은 문자가 존재합니다.");
+   	       						} else { // result.equals("중복")
+   	       							$("#checkResult").text("중복된 아이디가 존재합니다.");
+   	       						}
+   	       						
+	       						$("#checkResult").css("color", "red").show();
+   	   							isIdOk = false;
+   	       					}
+   	       				},
+   	       				
+   	    				error : function(result, error) {
+   	    					console.log("ajax요청 실패");
+   	    					console.log("code : " + result.status + "\n");
+   	    					console.log("message : " + result.responseText + "\n");
+   	    					console.log("error : " + error);
+   	    				}
+   	       			});
+   				} else {
+   					$("#checkResult").hide();
+   				}
+   			});
+
     	});
     </script>
     
