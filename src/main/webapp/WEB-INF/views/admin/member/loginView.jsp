@@ -13,10 +13,10 @@ pageEncoding="UTF-8"%>
             <section id="breadcrumbs" class="breadcrumbs">
                 <div class="container">
                     <ol>
-                        <li><a href="/">Admin</a></li>
-                        <li>Login</li>
+                        <li><a href="/">관리자 홈</a></li>
+                        <li>디자이너</li>
                     </ol>
-                    <h2>Login</h2>
+                    <h2>디자이너 로그인</h2>
                 </div>
             </section>
             <!-- End Breadcrumbs -->

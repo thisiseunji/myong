@@ -53,8 +53,6 @@
 	<c:if test="${ not empty alertMsg }">
 		<script>
 			alert("${ alertMsg }");
-			console.log(alertMsg);
-			//alertify.alert('알림', '${ alertMsg }', function(){ alertify.success('Ok'); });
 		</script>
 			<c:remove var="alertMsg" scope="session" />
 	</c:if>
@@ -63,8 +61,8 @@
   <section id="topbar" class="d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">myong@google.com</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+82 010 0000 0000</span></i>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -80,22 +78,24 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <h1><a href="index.html">Eterna</a></h1>
+        <h1><a href="index.html">프로젝트 : 묭</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="<%=request.getContextPath()%>/resources/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
+      	<!-- admin의 경우  -->
         <ul>
-          <li><a class="active" href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a class="active" href="index.html">로그인</a></li>
+          
+          <li><a href="about.html">멤버 관리</a></li>
+          <li><a href="services.html">예약 관리</a></li>
+          <li><a href="portfolio.html">리뷰 관리</a></li>
+          <li><a href="team.html">매출 관리</a></li>
+          <li><a href="blog.html">스타일 메뉴 관리</a></li>
+          <li><a href="pricing.html">1:1 채팅</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
+			<ul>
               <li><a href="#">Drop Down 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>

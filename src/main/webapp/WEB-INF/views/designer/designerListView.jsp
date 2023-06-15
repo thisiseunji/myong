@@ -21,15 +21,33 @@
       <div class="container">
 
         <ol>
-          <li><a href="/">Home</a></li>
-          <li>Team</li>
+          <li><a href="/">홈</a></li>
+          <li>디자이너</li>
         </ol>
-        <h2>Team</h2>
+        <h2>디자이너</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Team Section ======= -->
+
+	  <div class="container mb-5 ">
+		  <div class="container-fluid">
+		      <form class="d-flex input-group col-6">
+				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+				  <ul class="dropdown-menu">
+				    <li><a class="dropdown-item" href="#">Action</a></li>
+				    <li><a class="dropdown-item" href="#">Another action</a></li>
+				    <li><a class="dropdown-item" href="#">Something else here</a></li>
+				    <li><hr class="dropdown-divider"></li>
+				    <li><a class="dropdown-item" href="#">Separated link</a></li>
+				  </ul>
+				  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+		        <button class="btn btn-outline-success" type="submit">Search</button>
+		      </form>
+		  </div>
+	  </div>
+
     <section id="team" class="team">
       <div class="container">
 
