@@ -6,21 +6,21 @@ import lombok.Data;
 
 @Data
 public class Member {
-	int memberNo;
-	String memberId;
-	String memberPwd;
-	String memberName;
-	String nickname;
-	String profileImg;
-	String position;
-	String title;
-	String subject;
-	String description;
-	String phone;
-	int chargeRate;
-	int dayOff;
-	Date startTime;
-	Date endTime;
-	Date effectiveDate;
-	String isDeleted;
+	private int memberNo;
+	private String memberId;
+	private String memberPwd;
+	private String memberName;
+	private String nickname;
+	private String profileImg;
+	private String position;
+	private String title;
+	private String subject;
+	private String description;
+	private String phone;
+	private int chargeRate;
+	private int dayOff;
+	private Date startTime;
+	private Date endTime;
+	private Date effectiveDate;
+	private String isDeleted;
 }

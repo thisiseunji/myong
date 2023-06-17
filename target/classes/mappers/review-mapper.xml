@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="reviewMapper">
+
+	<resultMap id="reviewResultMap" type="review">
+		<result column="REVIEW_NO" property="reviewNo"/>
+		<result column="TITLE" property="title"/>	
+		<result column="CONTENT" property="content"/>	
+		<result column="REVIEW_IMG" property="reviewImg"/>	
+		<result column="STYLE_STAR" property="styleStar"/>	
+		<result column="PRICE_STAR" property="priceStar"/>	
+		<result column="SERVICE_STAR" property="serviceStar"/>	
+		<result column="CREATED_AT" property="createdAt"/>	
+		<result column="REPLY" property="reply"/>	
+		<result column="UPDATED_AT" property="updatedAt"/>	
+		<result column="IS_DELETED" property="isDeleted"/>	
+		<result column="APPOINTMENT_NO" property="appointmentNo"/>	
+	</resultMap>
+	
+	<!-- 리뷰 생성 -->
+	<insert id="insertReview" parameterType="review">
+		INSERT INTO TB_REVIEW ( REVIEW_NO
+							  , TITLE
+							  , CONTENET
+							  , REVIEW_IMG
+							  , STYLE_STAR
+							  , PRICE_STAR
+							  , SERVICE_STAR
+							  , CREATED_AT
+							  , IS_DELETED
+							  , APPOINTMENT_NO)
+					  VALUES ( SEQ_REV.NEXTVAL
+					  		 , #{title}
+					  		 , #{content}
+					  		 , #{reviewImg}
+					  		 , #{styleStar}
+					  		 , #{priceStar}
+					  		 , #{serviceStar}
+					  		 , DEFAULT
+					  		 , DEFAULT
+					  		 , #{APPOINTMENT_NO})
+	</insert>
+	<!-- 고객, 디자이너 정보 검증 필요 -->
+	<!-- 리뷰 삭제 -->
+	<update id="deleteReview" parameterType="int">
+		UPDATE TB_REVIEW 
+		SET IS_DELETED = "Y"
+		  , UPDATED_AT = DEFAULT
+		FROM TB_REVIEW
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+
+	<!-- 리뷰 업데이트 : 디자이너 답글만 업데이트 됨. -->
+	<update id="updateReview" parameterType="int">
+		UPDATE TB_REVIEW
+		SET REPLY = #{reply}
+		  ,	UPDATED_AT = DEFAULT	
+		FROM TB_REVIEW
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+		
+</mapper>

@@ -111,10 +111,18 @@ span.fa-calendar {
 						   <input id='datetimepicker1Input' type='text' class='form-control' data-td-target='#datetimepicker1'/>
 						   <span class='fa fa-solid fa-calendar input-group-text' data-td-target='#datetimepicker1' data-td-toggle='datetimepicker'></span>
 					    </div>
-
+				          <!--
+				           	예약 구현시 생각한 것 메모
+				           	1. 선택된 시간 값은 input hidden 태그로 넘긴다.
+				           	2. (input #datetimepicker1Input의 값이 변할 때 마다) 해당 날짜의 예약 내역에 대해 검색,
+				           	아! 시간이 disabled 될 필요는 없네! 디자이너를 검색하면 되네. 만약 디자이너가 0이면 그 시간은 disabled인것. 
+				           	디자이너 상세페이지에서는 예약 가능 시간을 나타내면 되구, 맞지? 예약하기로 넘어가는게 아니고 ㅇㅇ
+				           	
+				           	일단 여기서는 시간 -> 디자이너 순이므로 예약 가능한 디자이너가 없을 경우만 생각해서 할 대비할 것~!
+				           -->
 				          <div class="card-body p-3 p-sm-5">
 				            <div class="row text-center mx-0">
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">10:00AM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1 ">10:00AM</div></div>
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">10:30AM</div></div>
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:00AM</div></div>
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:30AM</div></div>
@@ -144,6 +152,7 @@ span.fa-calendar {
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">8:30PM</div></div>
 				            </div>
 				          </div>
+
 				 		달력으로 일정 선택하면 -> 시간이 뜨고, 시간 선택하면 -> 선택 가능한 디자이너가 나오도록 구현 
 					</div>
 				</section>
@@ -301,7 +310,7 @@ span.fa-calendar {
 	  
 	  
 	    $(document).ready(function(){
-			//시간 선택
+			//시간 선택 : 만일 이미 예약 내역이 있으면 선택이 안 되도록, 예약이 넘어갈 때는 selected 된 div가 없으면 넘어가지 못하도록 -> 해야함. 
 			$('.cell').click(function(){
 			    $('.cell').removeClass('select');
 			    $(this).addClass('select');
