@@ -12,7 +12,7 @@ public class Review {
 	// 리뷰 데이터 받아올 때, 이미지 파일을 담기위한 용도
 	private MultipartFile multipartFile;
 	private String reviewImg;
-	private int styelStar;
+	private int styleStar;
 	private int priceStar;
 	private int serviceStar;
 	private String reply; // ""

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper namespace="reviewMapper">
 
+<mapper namespace="reviewMapper">
 	<resultMap id="reviewResultMap" type="review">
 		<result column="REVIEW_NO" property="reviewNo"/>
 		<result column="TITLE" property="title"/>	
@@ -21,7 +21,7 @@
 	<insert id="insertReview" parameterType="review">
 		INSERT INTO TB_REVIEW ( REVIEW_NO
 							  , TITLE
-							  , CONTENET
+							  , CONTENT
 							  , REVIEW_IMG
 							  , STYLE_STAR
 							  , PRICE_STAR
@@ -38,7 +38,7 @@
 					  		 , #{serviceStar}
 					  		 , DEFAULT
 					  		 , DEFAULT
-					  		 , #{APPOINTMENT_NO})
+					  		 , #{appointmentNo})
 	</insert>
 	<!-- 고객, 디자이너 정보 검증 필요 -->
 	<!-- 리뷰 삭제 -->
@@ -58,5 +58,4 @@
 		FROM TB_REVIEW
 		WHERE REVIEW_NO = #{reviewNo}
 	</update>
-		
 </mapper>

@@ -12,7 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileSaver {
 	
 	// 저장경로
-	private final String FILE_DIR_PATH = "/resources/img/";
+	// private final String FILE_DIR_PATH = "/resources/img/";
+	private final String FILE_DIR_PATH = "src/main/webapp/resources/img/";
 	private final String REVIEW = "review_upfiles/";
 	private final String STYLE = "style_upfiles/"; 
 	
