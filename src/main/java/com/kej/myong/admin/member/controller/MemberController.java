@@ -1,4 +1,4 @@
-package com.kej.myong.admin.member;
+package com.kej.myong.admin.member.controller;
 
 import java.util.regex.Pattern;
 
@@ -69,7 +69,7 @@ public class MemberController {
 	    
 	}*/
 	
-	// 아이디 유효성(숫자, 소문자만 입력 가능하도록) 및 중복 검사
+	// 아이디 유효성(숫자, 소문자만 입력 가능하도록) 및 중복 검사, ajax요청
 	@GetMapping(value="/checkid", produces = "application/html; charset=utf-8")
 	@ResponseBody
 	public String memberIdCheck(String checkId) {
