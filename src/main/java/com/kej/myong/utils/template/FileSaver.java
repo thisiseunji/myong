@@ -1,4 +1,4 @@
-package com.kej.myong.utils;
+package com.kej.myong.utils.template;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,6 +50,6 @@ public class FileSaver {
 			return null;
 		}
 	    
-		return filePath;
+		return filePath + storeFilename;
 	}
 }
