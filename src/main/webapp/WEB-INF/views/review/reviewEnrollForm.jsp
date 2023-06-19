@@ -8,7 +8,8 @@
 </head>
 <body>
     <h1>리뷰 등록</h1>
-    <form action="review" method="post" enctype="multipart/form-data">
+    <!-- 리뷰 등록페이지가 review/write이기 때문에,요청 주소를 이렇게 써줌 -->
+    <form action="../review" method="post" enctype="multipart/form-data">
         <label for="title">제목:</label>
         <input type="text" id="title" name="title" required><br><br>
         

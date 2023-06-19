@@ -1,5 +1,7 @@
 package com.kej.myong.review.model.vo;
 
+import java.sql.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -15,7 +17,10 @@ public class Review {
 	private int styleStar;
 	private int priceStar;
 	private int serviceStar;
-	private String reply; // ""
+	private Date createdAt;
+	private String reply;
+	private Date updatedAt;
+	private String isDeleted;
 	private int appointmentNo;
 	// 리뷰 삭제시 검증을 위해 저장하는 용도
 	private int customerNo;
