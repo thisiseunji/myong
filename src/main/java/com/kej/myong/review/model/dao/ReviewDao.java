@@ -9,6 +9,13 @@ import com.kej.myong.review.model.vo.Review;
 public class ReviewDao {
 
 	public int insertReview(SqlSessionTemplate sqlSession, Review r) {
+
 		return sqlSession.insert("reviewMapper.insertReview", r);
 	}
+
+	public int deleteReview(SqlSessionTemplate sqlSession, Review r) {
+		
+		return sqlSession.update("reviewMapper.deleteReview", r);
+	}
+
 }

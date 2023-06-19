@@ -40,14 +40,16 @@
 					  		 , DEFAULT
 					  		 , #{appointmentNo})
 	</insert>
-	<!-- 고객, 디자이너 정보 검증 필요 -->
 	<!-- 리뷰 삭제 -->
-	<update id="deleteReview" parameterType="int">
-		UPDATE TB_REVIEW 
-		SET IS_DELETED = "Y"
-		  , UPDATED_AT = DEFAULT
-		FROM TB_REVIEW
+	<update id="deleteReview" parameterType="review">
+		UPDATE TB_REVIEW
+		SET IS_DELETED = 'Y'
 		WHERE REVIEW_NO = #{reviewNo}
+		AND APPOINTMENT_NO IN (
+		  SELECT APPOINTMENT_NO
+		  FROM TB_APPOINTMENT
+		  WHERE CUSTOMER_NO = #{customerNo}
+		)
 	</update>
 
 	<!-- 리뷰 업데이트 : 디자이너 답글만 업데이트 됨. -->
