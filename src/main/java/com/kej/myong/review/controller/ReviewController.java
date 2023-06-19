@@ -5,6 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,4 +55,19 @@ public class ReviewController {
 		int result = reviewService.insertReview(r);
 		return result > 0? "리뷰 등록 성공" : "리뷰 등록 실패";
 	}	
+	
+	@DeleteMapping
+	@ResponseBody
+	public String deleteReview(Review r, HttpSession session) {
+		// 고객 정보가 있을 경우에만 요청되도록 해야하고, 고객정보와 리뷰 정보를 함께 넘겨줘야함.
+		// 고객정보는 session에 있음. 해당 고객이 작성한 리뷰일 경우에만 삭제되록 해야함.
+		// 관련 이미지?는 삭제할 필요 없겠다.
+		int customerNo = (int)session.getAttribute("customerNo");
+		r.setCustomerNo(customerNo);
+		
+		int result = reviewService.deleteReview(r);
+		
+		return result > 0? "리뷰 삭제 성공" : "리뷰 삭제 실패";
+		
+	}
 }

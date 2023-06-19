@@ -6,4 +6,7 @@ public interface ReviewService {
 
 	int insertReview(Review r);
 
+	int deleteReview(Review r);
+
+
 }

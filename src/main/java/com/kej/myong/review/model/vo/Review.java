@@ -17,4 +17,6 @@ public class Review {
 	private int serviceStar;
 	private String reply; // ""
 	private int appointmentNo;
+	// 리뷰 삭제시 검증을 위해 저장하는 용도
+	private int customerNo;
 }
