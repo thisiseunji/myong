@@ -18,7 +18,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kej</groupId>
 	<artifactId>myong</artifactId>
-	<name>Spring_Project</name>
+	<name>Myong</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
