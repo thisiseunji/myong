@@ -69,7 +69,7 @@ span.fa-calendar {
       </div>
     </section><!-- End Breadcrumbs -->
   
-	<form method="post" action="/*">
+	<form method="post" action="/">
   	<section id="portfolio-details" class="portfolio-details">
   		<div class="container">
   			<!-- 탭 메뉴 -->
@@ -120,36 +120,36 @@ span.fa-calendar {
 				           	
 				           	일단 여기서는 시간 -> 디자이너 순이므로 예약 가능한 디자이너가 없을 경우만 생각해서 할 대비할 것~!
 				           -->
-				          <div class="card-body p-3 p-sm-5">
+				          <div class="card-body p-3 p-sm-5" id="timeSelector">
 				            <div class="row text-center mx-0">
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1 ">10:00AM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">10:30AM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:00AM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:30AM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">12:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">12:30PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1 ">10:00 AM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">10:30 AM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:00 AM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:30 AM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">12:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">12:30 PM</div></div>
 				            </div>
 				            <div class="row text-center mx-0">
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">1:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">1:30PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">2:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">2:30PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">3:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">3:30PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">1:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">1:30 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">2:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">2:30 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">3:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">3:30 PM</div></div>
 				            </div>
 				            <div class="row text-center mx-0">
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">4:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">4:30PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">5:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">5:30PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">6:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">6:30PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">4:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">4:30 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">5:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">5:30 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">6:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">6:30 PM</div></div>
 				            </div>
 				            <div class="row text-center mx-0">
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">7:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">7:30PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">8:00PM</div></div>
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">8:30PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">7:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">7:30 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">8:00 PM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">8:30 PM</div></div>
 				            </div>
 				          </div>
 
@@ -292,7 +292,7 @@ span.fa-calendar {
 				},
 			  	localization: {
 				    locale: 'KR',
-				    format: 'yyyy년 M d일'
+				    format: 'yyyy-MM-dd'
 				},
 				
 		});
@@ -310,12 +310,45 @@ span.fa-calendar {
 	  
 	  
 	    $(document).ready(function(){
-			//시간 선택 : 만일 이미 예약 내역이 있으면 선택이 안 되도록, 예약이 넘어갈 때는 selected 된 div가 없으면 넘어가지 못하도록 -> 해야함. 
+			// 날짜와 시간, 둘다 선택이 되면 되는 것
+			// 우선 클릭 이벤트가 발생하면 selected된 시간데이터를 가지고, 조건에 맞는 디자이너를 선택하면 됨
+			// 날짜는 무조건 있어야함. 둘 중에 하나라도 비어있으면 안돼
+			// 1. 날짜가 있는지 확인
+			// 2. 날짜와 시간이 모두 선택됐다면, 예약테이블에 그 날, 그 시간에 있는 예약을 모두 찾아. 
+			// 3. 전체 디자이너 중, 이미 예약이 있는 사람이 아니고, 날짜로 : 그 날 휴일이 아니고, 시간: 근무 시간이 선택된 시간 범위를 포함하는 디자이너를 모두 리턴해.
+			// 그럼 끝이다.
 			$('.cell').click(function(){
-			    $('.cell').removeClass('select');
-			    $(this).addClass('select');
-				});
+	 	  		if($('#datetimepicker1Input').val() == "") {
+	 	  			alert("날짜를 선택하세요.");
+	 	  		} else {
+				    $('.cell').removeClass('select');
+				    $(this).addClass('select');
+				    selectDesignerList();
+	 	  		}
+			});
 		});
- 	  
+	    
+ 	  	function selectDesignerList() {
+ 	  		
+ 	  		// 만약에 날짜가 없으면 날짜를 선택하라는 알림이 떠야하고, 아니면
+ 	  		if($('#datetimepicker1Input').val() == "") {
+ 	  			alert("날짜를  선택해 주세요.");
+ 	  			return;
+ 	  		}
+ 	  		$.ajax({
+ 	  			url : "appointment/designer",
+ 	  			data : {
+ 	  				schedule :  $('#datetimepicker1Input').val() + " " + $('.cell.select').text()
+ 	  			},
+ 	  			success : function(list) {
+ 	  					console.log("여기왔음");
+ 	  					console.log(list); // 현재 list 결과가 없으면 안되는데, 안나옴. 왜지?
+ 	  			},
+ 	  			error : function() {
+ 	  				console.log("디자이너 호출 실패");
+ 	  			}
+ 	  			
+ 	  		});
+ 	  	}
 	</script>
 <body>

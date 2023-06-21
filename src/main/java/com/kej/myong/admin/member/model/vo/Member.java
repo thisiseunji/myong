@@ -19,8 +19,8 @@ public class Member {
 	private String phone;
 	private int chargeRate;
 	private int dayOff;
-	private Date startTime;
-	private Date endTime;
-	private Date effectiveDate;
+	private String startTime;
+	private String endTime;
+	private String effectiveDate;
 	private String isDeleted;
 }

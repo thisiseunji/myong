@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="appointmentMapper">
+	<resultMap id="appointmentResultSet" type="appointment">
+		<result column="APPOINTMENT_NO" property="appointmentNo"/>
+		<result column="SCHEDULE" property="schedule"/>
+		<result column="CREATED_AT" property="createdAt"/>
+		<result column="PRICE" property="price"/>
+		<result column="PROGRESS" property="progress"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="STYLE_NO" property="styleNo"/>
+		<result column="CUSTOMER_NO" property="customerNo"/>
+	</resultMap>
+
+</mapper>

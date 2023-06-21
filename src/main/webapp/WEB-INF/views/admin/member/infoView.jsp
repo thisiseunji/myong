@@ -110,13 +110,13 @@
 						<div class="form-group mb-3 col-lg-6">
 							<h4 class="mb-3 mt-0">정기 휴일 지정</h4>
 							<select class="form-select" aria-label="Floating label select example" id="day-select">
-							  <option selected value=1>월</option>
-							  <option value=2>화</option>
-							  <option value=3>수</option>
-							  <option value=4>목</option>
-							  <option value=5>금</option>
-							  <option value=6>토</option>
-							  <option value=0>일</option>
+							  <option selected value=2>월</option>
+							  <option value=3>화</option>
+							  <option value=4>수</option>
+							  <option value=5>목</option>
+							  <option value=6>금</option>
+							  <option value=7>토</option>
+							  <option value=1>일</option>
 							</select>
 						 </div>
 						 <div class="col-lg-6 mb-5 mb-xxl-0">
