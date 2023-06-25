@@ -44,6 +44,7 @@
 					     , DEFAULT)
 	</insert>
 	
+	<!-- 아이디 중복 체크 -->
 	<select id="checkId" parameterType="string" resultType="int">
 		SELECT COUNT(*)
 		  FROM TB_MEMBER
@@ -51,7 +52,7 @@
 	</select>
 	
 	
-	<!-- 예약을 위한 디자이너 선택용 쿼리		 -->					
+	<!-- 예약을 위한 디자이너 선택용 -->					
 	<select id="selectMemberListBySchedule" parameterType="string" resultMap="memberResultSet">
 		SELECT * 
 		  FROM TB_MEMBER
@@ -60,7 +61,8 @@
 		                          WHERE SCHEDULE = TO_TIMESTAMP(#{schedule}, 'YYYY-MM-DD HH:MI AM', 'NLS_DATE_LANGUAGE=ENGLISH'))
 		   AND TO_CHAR(TO_DATE(SUBSTR(#{schedule}, 1, 10), 'YYYY-MM-DD'), 'D') != DAY_OFF
 		   AND TO_CHAR(TO_DATE(SUBSTR(#{schedule}, 12, 19), 'HH:MI AM', 'NLS_DATE_LANGUAGE=ENGLISH'), 'HH24:MI') 
-		   			  BETWEEN TO_CHAR(START_TIME,  'HH24:MI') AND TO_CHAR(END_TIME,  'HH24:MI')
+		   			  BETWEEN TO_CHAR(START_TIME,  'HH24:MI') 
+		   			  AND TO_CHAR(TO_DATE(TO_CHAR(END_TIME, 'YYYY-MM-DD HH:MI AM', 'NLS_DATE_LANGUAGE=ENGLISH'), 'YYYY-MM-DD HH:MI AM', 'NLS_DATE_LANGUAGE=ENGLISH')-30/(24*60),  'HH24:MI')
 	</select>
 
 	
