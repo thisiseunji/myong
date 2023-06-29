@@ -76,7 +76,7 @@ div.member.select {
       </div>
     </section><!-- End Breadcrumbs -->
   
-	<form method="post" action="/">
+	<form method="post" action="../appointment">
   	<section id="portfolio-details" class="portfolio-details">
   		<div class="container">
   			<!-- 탭 메뉴 -->
@@ -181,19 +181,20 @@ div.member.select {
 			  </div>
 			  
 			  <div class="tab-pane fade container" id="style" role="tabpanel" aria-labelledby="style-tab">
-				<section id="category" class="category container mt-5">
+				
+			    <section id="category" class="category container mt-5">
 					<div class="row">
 						<div class="col-8">
 					  		<div class="input-group ">
 					  		  <span class="input-group-text">대분류</span>
-							  <select class="form-select" id="inputGroupSelect01" aria-label="Example select with button addon">
+							  <select class="form-select" id="division1" name="division1" aria-label="Example select with button addon">
 							    <option selected>전체</option>
-							    <option value="hair">헤어</option>
-							    <option value="makeup">메이크업</option>
-							    <option value="nail">네일</option>
+							    <option value="헤어">헤어</option>
+							    <option value="메이크업">메이크업</option>
+							    <option value="네일">네일</option>
 							  </select>
 							  <span class="input-group-text">소분류</span>
-							  <select class="form-select" id="inputGroupSelect02" aria-label="Example select with button addon">
+							  <select class="form-select" id="division2" name="division2" aria-label="Example select with button addon">
 							    <option selected>전체</option>
 							    <option value="1">숏</option>
 							    <option value="2">미디움</option>
@@ -207,7 +208,7 @@ div.member.select {
 						</div>
 						<div class="col-4">
 					  		<div class="input-group ">
-							  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+							  <select class="form-select" id="orderBy" aria-label="Example select with button addon">
 							    <option selected>예약 많은 순</option>
 							    <option value="1">후기 많은 순</option>
 							    <option value="2">가격 낮은 순</option>
@@ -219,10 +220,19 @@ div.member.select {
 					</div>
 				</section>
 				
+				<section class="style">
+					<div class="container">
+						<!-- 스타일 리스트 -->
+					</div>
+					
+				</section>
+				
 				<div class="container mt-5 mb-5 row d-flex justify-content-center">
+
 					<button for class="btn btn-primary col-6" type="submit">
 				  		예약 하기
 				  	</button>
+				  						
 				</div>
 	
 				<section id="move3">
@@ -335,7 +345,21 @@ div.member.select {
 				$('.member').removeClass('select')
 				$(this).addClass('select');
 			});
+			
+			//- 검색 버튼을 눌렀을 때
+			//- 페이지 맨 처음 로드 될 때 스타일 list get
+			// division2에 대한 검색
+			$('#division1').change(function() {
+				let division1 = $(this).val();
+				selectDivision2ListAsDivision1(division1);
+			});
 
+			// section category의 버튼이 눌리면, 해당 조건에 대한 스타일 list 리턴 (페이지네이션? 필요함? 많으면 필요할 수 있지?)
+			// 데이터는 category의 div 중, class가 input group인 것에서 selected 된 것 속성 근데 이거 그냥 리스트로 못 넘기나?
+			$('#category btn').click(function() {
+			
+			});
+			
 		});
 	    
 	    // 왜 상대경로로 안 먹히는지를 모르겠음.
@@ -378,6 +402,32 @@ div.member.select {
  	  			}
  	  			
  	  		});
+	    }
+	    
+	    function selectDivision2ListAsDivision1(division1) {
+ 	  		let tmp = '<option selected>전체</option>';
+ 	  		if (division1 == '전체') {
+ 	  			$('select#division2').html(tmp);
+ 	  		} else {
+ 	 	  		$.ajax({
+ 	 	  			url : "style/division",
+ 	 	  			data : {
+ 	 	  				division1 : division1
+ 	 	  			},
+ 	 	  			// String list가 올 것임.
+ 	 	  			success : function(list) {
+ 	 	  				if(list.length != 0) {
+ 	 	  					for (let i=0 ; i < list.length ; i++) {
+ 	 	  						tmp += '<option>'+ list[i] +'</option>';
+ 	 	  					}
+ 	 	  				}
+ 	 	  				$('select#division2').html(tmp);
+ 	 	  			},
+ 	 	  			error : function() {
+ 	 	  				console.log('division2 호출 실패');
+ 	 	  			}
+ 	 	  		});
+ 	  		}
  	  	}
 	</script>
 <body>

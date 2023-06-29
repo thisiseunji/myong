@@ -21,28 +21,13 @@ public class temp {
 	}
 	
 	
-	@RequestMapping("style/list")
-	public String styleListPage() {
-		return "style/styleListView";
-	}
-	
-	@RequestMapping("style/detail")
-	public String styleDetailPage() {
-		return "style/styleDetailView";
-	}
-	
-	@RequestMapping("appointment")
-	public String reservationPage() {
-		return "appointment/appointmentView"; 
-	}
+
 	
 	// admin member
 	@RequestMapping("admin/login")
 	public String adminLoginPage() {
 		return "admin/member/loginView";
 	}
-	
-
 	
 	@RequestMapping("admin/myInfo")
 	public String adminInfoPage() {

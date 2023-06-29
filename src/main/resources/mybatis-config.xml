@@ -10,12 +10,14 @@
 		<typeAlias type="com.kej.myong.admin.member.model.vo.Member" alias="member" />
 		<typeAlias type="com.kej.myong.review.model.vo.Review" alias="review" />
 		<typeAlias type="com.kej.myong.appointment.model.vo.Appointment" alias="appointment" />
+		<typeAlias type="com.kej.myong.style.model.vo.Style" alias="style" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml" />
 		<mapper resource="/mappers/review-mapper.xml" />
 		<mapper resource="/mappers/appointment-mapper.xml" />
+		<mapper resource="/mappers/style-mapper.xml" />
 	</mappers>
 
 </configuration>

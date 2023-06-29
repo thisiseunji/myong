@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="styleMapper">
+	<resultMap id="styleResultSet" type="style">	
+		<result column="STYLE_NO" property="styleNo"/>
+		<result column="STYLE_NAME" property="styleName"/>
+		<result column="DESCRIPTION" property="description"/>
+		<result column="MINUTE" property="minute"/>
+		<result column="GENDER" property="gender"/>
+		<result column="DIVISION1" property="division1"/>
+		<result column="DIVISION2" property="division2"/>
+		<result column="DIVISION3" property="division3"/>
+		<result column="BASIC_PRICE" property="basicPrice"/>
+		<result column="IMG1" property="img1"/>
+		<result column="IMG2" property="img2"/>
+		<result column="IMG3" property="img3"/>
+		<result column="IS_DELETED" property="isDeleted"/>
+	</resultMap>
+	
+	<select id="selectDivision2ListAsDivision1" parameterType="String" resultType="String">
+		SELECT DIVISION2
+		FROM TB_STYLE
+		WHERE DIVISION1=#{division1}
+	</select>
+</mapper>
