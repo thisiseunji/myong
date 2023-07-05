@@ -7,11 +7,6 @@
 <title>예약</title>
 
 <style>
-
-.card {
-  box-shadow: 0px 4px 8px 0px #7986CB;
-}
-
 .datepicker {
   background-color: #000 !important;
   color: #fff !important;
@@ -33,11 +28,12 @@
 }
 
 .cell:hover {
-  border: 1px solid #3D5AFE;
+  /* border: 1px solid #3D5AFE;*/
+  border: 1px solid #808080;
 }
 
 .cell.select {
-  background-color: #3D5AFE;
+  background-color: #808080;
   color: #fff;
 }
 
@@ -46,6 +42,15 @@ span.fa-calendar {
   font-size: 20px;
   padding-top: 7px;
   cursor: pointer;
+}
+
+div.member:hover, div.menu:hover {
+	scale : 0.985;
+}
+div.member.select, div.menu.select {
+	border-radius : 5px;
+	border : 2px solid #808080;
+	scale : 0.985;
 }
 
 </style>
@@ -69,7 +74,7 @@ span.fa-calendar {
       </div>
     </section><!-- End Breadcrumbs -->
   
-	<form method="post" action="/">
+	<form method="post" action="../appointment">
   	<section id="portfolio-details" class="portfolio-details">
   		<div class="container">
   			<!-- 탭 메뉴 -->
@@ -106,7 +111,7 @@ span.fa-calendar {
 			  <!-- 디자이너 및 일정 선택 부분 -->
 			  <div class="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
 				<section id="calender" class="calender">
-					<div class="container mt-5">
+					<div class="container mt-5 row">
 						<div class='input-group' id='datetimepicker1' data-td-target-input='nearest' data-td-target-toggle='nearest'>
 						   <input id='datetimepicker1Input' type='text' class='form-control' data-td-target='#datetimepicker1'/>
 						   <span class='fa fa-solid fa-calendar input-group-text' data-td-target='#datetimepicker1' data-td-toggle='datetimepicker'></span>
@@ -122,7 +127,7 @@ span.fa-calendar {
 				           -->
 				          <div class="card-body p-3 p-sm-5" id="timeSelector">
 				            <div class="row text-center mx-0">
-				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1 ">10:00 AM</div></div>
+				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">10:00 AM</div></div>
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">10:30 AM</div></div>
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:00 AM</div></div>
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">11:30 AM</div></div>
@@ -153,21 +158,13 @@ span.fa-calendar {
 				            </div>
 				          </div>
 
-				 		달력으로 일정 선택하면 -> 시간이 뜨고, 시간 선택하면 -> 선택 가능한 디자이너가 나오도록 구현 
 					</div>
 				</section>
 				<section id="team" class="team">
 					<div class="container mt-3">
-						<div class="row">
-          					<div class="col-lg-2 col-md-4 d-flex align-items-stretch">
-          						<div class="member">
-          							<!-- 경로가 이상함 왜 절대경로처럼 지정해줘야 하는걸까?
-          							<img src="/../resources/img/team/team-1.jpg" alt=""> -->
-          							<img src="https://yt3.googleusercontent.com/7PTY8Wez_7vNC5d-tIfEpvGvsqx9Je9V_BYpBejUosB2oQ5gIE8xLviG2X2W26vPPgwmZuJ1KQ=s900-c-k-c0x00ffffff-no-rj">
-          							<h4>찌드래곤</h4>
-						            <span>수석 디자이너</span>
-          						</div>
-          					</div>
+						<div class="row container-fluid">
+							<!-- 선택가능한 디자이너 목록 출력 -->
+							<div class="col d-flex justify-content-center">예약 일정을 선택해주세요.</div>
           				</div>
 					</div>
 				</section>
@@ -182,73 +179,118 @@ span.fa-calendar {
 			  </div>
 			  
 			  <div class="tab-pane fade container" id="style" role="tabpanel" aria-labelledby="style-tab">
-				<section id="category" class="category container row mt-5">
-				  		<div class="input-group col">
-						  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-						    <option selected>전체</option>
-						    <option value="hair">헤어</option>
-						    <option value="makeup">메이크업</option>
-						    <option value="nail">네일</option>
-						  </select>
-						  <button class="btn btn-outline-secondary" type="button">적용</button>
-						</div>
-				  		<div class="input-group col">
-						  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-						    <option selected>전체</option>
-						    <option value="1">숏</option>
-						    <option value="2">미디움</option>
-						    <option value="3">롱</option>
-						    <option value="1">컬러</option>
-						    <option value="2">펌</option>
-						    <option value="3">드라이</option>
-						  </select>
-						  <button class="btn btn-outline-secondary" type="button">적용</button>
-						</div>
-				  		<div class="input-group col">
-						  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-						    <option selected>예약 많은 순</option>
-						    <option value="1">후기 많은 순</option>
-						    <option value="2">가격 낮은 순</option>
-						    <option value="3">가격 높은 순</option>
-						  </select>
-						  <button class="btn btn-outline-secondary" type="button">적용</button>
-						</div>
-				  	</section>
 				
-			  	<div class="container mt-5 mb-5 row d-flex justify-content-center">
-				  	<button for class="btn btn-primary col-6" type="submit">
-				    	예약 하기
-				    </button>
-			  	</div>
+			    <section id="category" class="category container mt-5">
+					<div class="row">
+						<div class="col-8">
+					  		<div class="input-group ">
+					  		  <span class="input-group-text">대분류</span>
+							  <select class="form-select" id="division1" name="division1" aria-label="Example select with button addon">
+							    <option selected>전체</option>
+							    <option value="헤어">헤어</option>
+							    <option value="메이크업">메이크업</option>
+							    <option value="네일">네일</option>
+							  </select>
+							  <span class="input-group-text">소분류</span>
+							  <select class="form-select" id="division2" name="division2" aria-label="Example select with button addon">
+							    <option selected>전체</option>
+							    <option value="1">숏</option>
+							    <option value="2">미디움</option>
+							    <option value="3">롱</option>
+							    <option value="4">컬러</option>
+							    <option value="5">펌</option>
+							    <option value="6">드라이</option>
+							  </select>
+							  <button class="btn btn-outline-secondary" type="button">적용</button>
+							</div>
+						</div>
+						<div class="col-4">
+					  		<div class="input-group ">
+							  <select class="form-select" id="orderBy" aria-label="Example select with button addon">
+							    <option selected value="예약 많은 순">예약 많은 순</option>
+							    <option value="후기 많은 순">후기 많은 순</option>
+							    <option value="가격 낮은 순">가격 낮은 순</option>
+							    <option value="가격 높은 순">가격 높은 순</option>
+							  </select>
+							  <button class="btn btn-outline-secondary" type="button">적용</button>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- 페이지 로딩시 전체 스타일의 1장이 넘어와야함. -->
+				<section class="style">
+					<div class="container">
+						<div class="row justify-content-between align-items-start">
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+							  <h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">드레프트 컷</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</section>
+				
+				<div class="container mt-5 mb-5 row d-flex justify-content-center">
+
+					<button for class="btn btn-primary col-6" type="submit">
+				  		예약 하기
+				  	</button>
+				  						
+				</div>
 	
 				<section id="move3">
 					<button class="nav-link btn float-start pe-1" id="schedule-tab" data-bs-target="#schedule" data-bs-toggle="tab" role="tab" type="button" onclick="changeTab('schedule')">
 					 	<i class="bi bi-arrow-left"></i>  이전
 					</button>
-		
 				</section>	
 			  </div>
 			  
-				<div class="tab-pane fade container" id="appointment" role="tabpanel" aria-labelledby="appointment-tab">
-					<div class="container mt-5">
-						<div class="row col text-end">
-							<div class="col-5 row">
-								<label for="phone" class="form-label col-3 ms-0 mt-2 me-2">휴대폰 번호</label>
-								<input id="phone" class="form-control col" type="text" placeholder="ex) 010-0000-0000" aria-label="default input example">
-							</div>
-							<div class="col-5 row">
-								<label for="name" class="form-label col-2 mt-2 me-2">이름</label>
-								<input id="name" class="form-control col ms-0" type="text" placeholder="김은지" aria-label="default input example">
-							</div>
-							<button class="col-2 btn btn-primary ms-4 me-0">예약내역 확인</button>
-						</div>
-				    </div>
-				</div>			
-			</div>
-		</div>
+			  <div class="tab-pane fade container" id="appointment" role="tabpanel" aria-labelledby="appointment-tab">
+				  <div class="container mt-5">
+					  <div class="row col text-end">
+						  <div class="col-5 row">
+							  <label for="phone" class="form-label col-3 ms-0 mt-2 me-2">휴대폰 번호</label>
+							  <input id="phone" class="form-control col" type="text" placeholder="ex) 010-0000-0000" aria-label="default input example">
+						  </div>
+						  <div class="col-5 row">
+							  <label for="name" class="form-label col-2 mt-2 me-2">이름</label>
+							  <input id="name" class="form-control col ms-0" type="text" placeholder="김은지" aria-label="default input example">
+						  </div>
+						  <button class="col-2 btn btn-primary ms-4 me-0">예약내역 확인</button>
+					    </div>
+				   </div>
+			   </div>
+			   			
+		    </div>
+	    </div>
 	</section>
-  	</form>
-  </main>
+  </form>
+</main>
   	
   <%@ include file="../common/footer.jsp" %>
   
@@ -309,7 +351,7 @@ span.fa-calendar {
 		}
 	  
 	  
-	    $(document).ready(function(){
+	    $(function(){
 			// 날짜와 시간, 둘다 선택이 되면 되는 것
 			// 우선 클릭 이벤트가 발생하면 selected된 시간데이터를 가지고, 조건에 맞는 디자이너를 선택하면 됨
 			// 날짜는 무조건 있어야함. 둘 중에 하나라도 비어있으면 안돼
@@ -326,8 +368,37 @@ span.fa-calendar {
 				    selectDesignerList();
 	 	  		}
 			});
+			
+			$(document).on('click', '.member', function() {
+				$('.member').removeClass('select');
+				$(this).addClass('select');
+			});
+			
+			$(document).on('click', '.menu', function() {
+				console.log(this);
+				$('.menu').removeClass('select');
+				$(this).addClass('select');
+			});
+			
+			//- 검색 버튼을 눌렀을 때
+			//- 페이지 맨 처음 로드 될 때 스타일 list get
+			// division2에 대한 검색
+			$('#division1').change(function() {
+				let division1 = $(this).val();
+				selectDivision2ListAsDivision1(division1);
+			});
+
+			// section category의 버튼이 눌리면, 해당 조건에 대한 스타일 list 리턴 (페이지네이션? 필요함? 많으면 필요할 수 있지?)
+			// 데이터는 category의 div 중, class가 input group인 것에서 selected 된 것 속성 근데 이거 그냥 리스트로 못 넘기나?
+			$('#category button').click(function() {
+				selectStyleListAsDivisions();
+			});
+			
+			selectStyleListAsDivisions();
 		});
 	    
+	    // 왜 상대경로로 안 먹히는지를 모르겠음.
+	    const contextPath = '<%= request.getContextPath()%>'
  	  	function selectDesignerList() {
  	  		
  	  		// 만약에 날짜가 없으면 날짜를 선택하라는 알림이 떠야하고, 아니면
@@ -341,14 +412,98 @@ span.fa-calendar {
  	  				schedule :  $('#datetimepicker1Input').val() + " " + $('.cell.select').text()
  	  			},
  	  			success : function(list) {
- 	  					console.log("여기왔음");
- 	  					console.log(list); // 현재 list 결과가 없으면 안되는데, 안나옴. 왜지?
+ 	  					let tmp = '';
+ 	  				
+ 	  					if (list.length == 0 ) {
+ 	  						tmp = '<div class="d-flex align-items-stretch justify-content-center">'
+ 	  							+ '해당 일정에 예약 가능한 디자이너가 없습니다. 다른 일정을 선택해주세요.'
+ 	  							+ '</div>';
+ 	  					} else {
+ 	  						for(let i=0 ; i < list.length; i++) {
+ 		          				tmp += '<div class="col-lg-2 col-md-4 d-flex align-items-stretch">'
+ 		          				    + '<div class="member" id="memeber'+ list[i].memberNo +'">'
+ 		      						+ '<img src="'+ contextPath + list[i].profileImg +'">'
+ 		      						+ '<h4>'+ list[i].nickname +'</h4>'
+ 							        + '<span>'+ list[i].position+'</span>'
+ 		      						+ '</div>'
+ 		      						+ '</div>'
+ 	 	  					}
+ 	  					}
+ 	  							
+ 	  					$('.team .row').html(tmp);
  	  			},
  	  			error : function() {
  	  				console.log("디자이너 호출 실패");
  	  			}
  	  			
  	  		});
+	    }
+	    
+	    // division
+	    function selectDivision2ListAsDivision1(division1) {
+ 	  		let tmp = '<option selected>전체</option>';
+ 	  		if (division1 == '전체') {
+ 	  			$('select#division2').html(tmp);
+ 	  		} else {
+ 	 	  		$.ajax({
+ 	 	  			url : "style/division",
+ 	 	  			data : {
+ 	 	  				division1 : division1
+ 	 	  			},
+ 	 	  			// String list가 올 것임.
+ 	 	  			success : function(list) {
+ 	 	  				if(list.length != 0) {
+ 	 	  					for (let i=0 ; i < list.length ; i++) {
+ 	 	  						tmp += '<option>'+ list[i] +'</option>';
+ 	 	  					}
+ 	 	  				}
+ 	 	  				$('select#division2').html(tmp);
+ 	 	  			},
+ 	 	  			error : function() {
+ 	 	  				console.log('division2 호출 실패');
+ 	 	  			}
+ 	 	  		});
+ 	  		}
  	  	}
+	    
+	    // /list/division
+	    function selectStyleListAsDivisions() {
+	    	let tmp = '';
+	    	$.ajax({
+	    		url : "style/list/division",
+	    		data : {
+	    			division1 : $('select#division1').val(),
+	    			division2 : $('select#division2').val(),
+	    			orderBy : $('#orderBy').val()
+	    		},
+	    		// style 목록, 페이지 정보, + 추가할 내용은 select 될 수 있도록 해야함.
+	    		success : function(result) {
+	    			let list = result.list;
+	    			let pi = result.pi;
+	    			
+	    			if(list.length == 0) {
+	    				tmp = '<div class="d-flex align-items-center justify-content-center">'
+	    					+ '선택하신 조건에 맞는 스타일은 준비중입니다.'
+	    					+ '</div>'
+	    			} else {
+		    			for (let i = 0; i < list.length; i++) {
+							tmp = '<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5 menu" style="width: 18rem;">'
+							  	+ '<img src="'+ 'https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg' +'" class="card-img-top" alt="...">'
+							  	+ '<div class="card-body">'
+							  	+ '<h5 class="card-title">'+list[i].styleName+'</h5>'
+							  	+ '</div>'
+								+ '</div>';
+		    			}
+	    			}
+
+	    			$('.style .container .row').html(tmp);
+	    		},
+	    		error : function() {
+	    			console.log('스타일 목록 호출 실패')
+	    		}
+	    	});
+	    	
+	    }
+	    
 	</script>
 <body>
