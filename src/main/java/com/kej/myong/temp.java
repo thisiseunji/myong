@@ -20,9 +20,6 @@ public class temp {
 		return "designer/designerDetailView";
 	}
 	
-	
-
-	
 	// admin member
 	@RequestMapping("admin/login")
 	public String adminLoginPage() {

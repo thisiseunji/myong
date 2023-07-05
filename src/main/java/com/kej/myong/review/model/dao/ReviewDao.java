@@ -24,8 +24,8 @@ public class ReviewDao {
 
 	public ArrayList<Review> selectReview(SqlSessionTemplate sqlSession, PageInfo pi, int memberNo) {
 		
-		int offset = (pi.getCurrentPage() - 1) * pi.getReviewLimit(); // offset : 건너뛸 숫자
-		int limit = pi.getReviewLimit(); // limit : 조회할 갯수
+		int offset = (pi.getCurrentPage() - 1) * pi.getContentLimit(); // offset : 건너뛸 숫자
+		int limit = pi.getContentLimit(); // limit : 조회할 갯수
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		

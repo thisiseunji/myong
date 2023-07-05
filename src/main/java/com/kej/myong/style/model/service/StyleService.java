@@ -6,8 +6,10 @@ import com.kej.myong.style.model.vo.Style;
 
 public interface StyleService {
 
-	ArrayList<Style> selectStyleList(Style style);
-
 	ArrayList<String> selectDivision2ListAsDivision1(String division1);
+
+	int selectListCountAsDivisions(Style style);
+
+	ArrayList<Style> selectStyleListAsDivisions(Style style);
 
 }

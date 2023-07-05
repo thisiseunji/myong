@@ -7,8 +7,6 @@
 <title>예약</title>
 
 <style>
-
-
 .datepicker {
   background-color: #000 !important;
   color: #fff !important;
@@ -31,11 +29,11 @@
 
 .cell:hover {
   /* border: 1px solid #3D5AFE;*/
-  border: 1px solid black;
+  border: 1px solid #808080;
 }
 
 .cell.select {
-  background-color: black;
+  background-color: #808080;
   color: #fff;
 }
 
@@ -46,12 +44,12 @@ span.fa-calendar {
   cursor: pointer;
 }
 
-div.member:hover {
+div.member:hover, div.menu:hover {
 	scale : 0.985;
 }
-div.member.select {
+div.member.select, div.menu.select {
 	border-radius : 5px;
-	border : 2px solid black;
+	border : 2px solid #808080;
 	scale : 0.985;
 }
 
@@ -209,22 +207,52 @@ div.member.select {
 						<div class="col-4">
 					  		<div class="input-group ">
 							  <select class="form-select" id="orderBy" aria-label="Example select with button addon">
-							    <option selected>예약 많은 순</option>
-							    <option value="1">후기 많은 순</option>
-							    <option value="2">가격 낮은 순</option>
-							    <option value="3">가격 높은 순</option>
+							    <option selected value="예약 많은 순">예약 많은 순</option>
+							    <option value="후기 많은 순">후기 많은 순</option>
+							    <option value="가격 낮은 순">가격 낮은 순</option>
+							    <option value="가격 높은 순">가격 높은 순</option>
 							  </select>
 							  <button class="btn btn-outline-secondary" type="button">적용</button>
 							</div>
 						</div>
 					</div>
 				</section>
-				
+				<!-- 페이지 로딩시 전체 스타일의 1장이 넘어와야함. -->
 				<section class="style">
 					<div class="container">
-						<!-- 스타일 리스트 -->
+						<div class="row justify-content-between align-items-start">
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+							  <h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">드레프트 컷</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
+							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
+							  <div class="card-body">
+								<h5 class="card-title">Card title</h5>
+							  </div>
+							</div>
+						</div>
 					</div>
-					
 				</section>
 				
 				<div class="container mt-5 mb-5 row d-flex justify-content-center">
@@ -342,7 +370,13 @@ div.member.select {
 			});
 			
 			$(document).on('click', '.member', function() {
-				$('.member').removeClass('select')
+				$('.member').removeClass('select');
+				$(this).addClass('select');
+			});
+			
+			$(document).on('click', '.menu', function() {
+				console.log(this);
+				$('.menu').removeClass('select');
 				$(this).addClass('select');
 			});
 			
@@ -356,10 +390,11 @@ div.member.select {
 
 			// section category의 버튼이 눌리면, 해당 조건에 대한 스타일 list 리턴 (페이지네이션? 필요함? 많으면 필요할 수 있지?)
 			// 데이터는 category의 div 중, class가 input group인 것에서 selected 된 것 속성 근데 이거 그냥 리스트로 못 넘기나?
-			$('#category btn').click(function() {
-			
+			$('#category button').click(function() {
+				selectStyleListAsDivisions();
 			});
 			
+			selectStyleListAsDivisions();
 		});
 	    
 	    // 왜 상대경로로 안 먹히는지를 모르겠음.
@@ -404,6 +439,7 @@ div.member.select {
  	  		});
 	    }
 	    
+	    // division
 	    function selectDivision2ListAsDivision1(division1) {
  	  		let tmp = '<option selected>전체</option>';
  	  		if (division1 == '전체') {
@@ -429,5 +465,45 @@ div.member.select {
  	 	  		});
  	  		}
  	  	}
+	    
+	    // /list/division
+	    function selectStyleListAsDivisions() {
+	    	let tmp = '';
+	    	$.ajax({
+	    		url : "style/list/division",
+	    		data : {
+	    			division1 : $('select#division1').val(),
+	    			division2 : $('select#division2').val(),
+	    			orderBy : $('#orderBy').val()
+	    		},
+	    		// style 목록, 페이지 정보, + 추가할 내용은 select 될 수 있도록 해야함.
+	    		success : function(result) {
+	    			let list = result.list;
+	    			let pi = result.pi;
+	    			
+	    			if(list.length == 0) {
+	    				tmp = '<div class="d-flex align-items-center justify-content-center">'
+	    					+ '선택하신 조건에 맞는 스타일은 준비중입니다.'
+	    					+ '</div>'
+	    			} else {
+		    			for (let i = 0; i < list.length; i++) {
+							tmp = '<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5 menu" style="width: 18rem;">'
+							  	+ '<img src="'+ 'https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg' +'" class="card-img-top" alt="...">'
+							  	+ '<div class="card-body">'
+							  	+ '<h5 class="card-title">'+list[i].styleName+'</h5>'
+							  	+ '</div>'
+								+ '</div>';
+		    			}
+	    			}
+
+	    			$('.style .container .row').html(tmp);
+	    		},
+	    		error : function() {
+	    			console.log('스타일 목록 호출 실패')
+	    		}
+	    	});
+	    	
+	    }
+	    
 	</script>
 <body>

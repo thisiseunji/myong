@@ -22,4 +22,53 @@
 		FROM TB_STYLE
 		WHERE DIVISION1=#{division1}
 	</select>
+	
+	<!-- division1,2에 따른 전체 스타일 수 세기 -->
+	<select id="selectListCountAsDivisions" parameterType="style" resultType="int">
+		SELECT COUNT(*)
+		FROM TB_STYLE
+		<if test="division1 != null and division1 != '전체'">
+			WHERE DIVISION1 = #{division1}
+		</if>
+		<if test="division2 != null and division2 != '전체'">
+			AND DIVISION2 = #{division2}
+		</if>
+	</select>
+	
+	<select id="selectStyleListAsDivisions" parameterType="style" resultMap="styleResultSet">
+		SELECT S.*
+		FROM TB_STYLE S
+		LEFT JOIN (
+		    SELECT STYLE_NO, COUNT(*) AS RESERVATION_COUNT
+		    FROM TB_APPOINTMENT
+		    GROUP BY STYLE_NO
+		) A ON S.STYLE_NO = A.STYLE_NO
+		LEFT JOIN (
+		    SELECT A.STYLE_NO, COUNT(*) AS REVIEW_COUNT
+		    FROM TB_REVIEW R
+		    INNER JOIN TB_APPOINTMENT A ON R.APPOINTMENT_NO = A.APPOINTMENT_NO
+		    GROUP BY A.STYLE_NO
+		) R ON S.STYLE_NO = R.STYLE_NO
+		<where>
+			<if test="division1 != null and division1 != '전체'">
+				AND DIVISION1 = #{division1}
+			</if>
+			<if test="division2 != null and division2 != '전체'">
+				AND DIVISION2 = #{division2}
+			</if>
+		</where>
+		ORDER BY
+		<if test="orderBy == '예약 많은 순'">
+		    A.RESERVATION_COUNT DESC
+		</if>
+		<if test="orderBy == '후기 많은 순'">
+		    R.REVIEW_COUNT DESC
+		</if>
+		<if test="orderBy == '가격 낮은 순'">
+		    S.BASIC_PRICE
+		</if>
+		<if test="orderBy == '가격 높은 순'">
+		    S.BASIC_PRICE DESC
+		</if>
+	</select>
 </mapper>

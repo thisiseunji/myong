@@ -44,9 +44,9 @@ public class ReviewController {
 		int listCount = reviewService.selectListCount();
 		
 		int pageLimit = 10;
-		int reviewLimit = 5;
+		int contentLimit = 5;
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, pageLimit, reviewLimit);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, pageLimit, contentLimit);
 		
 		ArrayList<Review> list = reviewService.selectReview(pi, memberNo);
 		
