@@ -2,10 +2,12 @@ package com.kej.myong.style.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kej.myong.style.model.vo.Style;
+import com.kej.myong.utils.model.vo.PageInfo;
 
 @Repository
 public class StyleDao {
@@ -19,8 +21,14 @@ public class StyleDao {
 		return sqlSession.selectOne("styleMapper.selectListCountAsDivisions", style);
 	}
 
-	public ArrayList<Style> selectStyleListAsDivisions(SqlSessionTemplate sqlSession, Style style) {
-		return (ArrayList)sqlSession.selectList("styleMapper.selectStyleListAsDivisions", style);
+	public ArrayList<Style> selectStyleListAsDivisions(SqlSessionTemplate sqlSession, PageInfo pi, Style style) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getContentLimit(); // 건너 뛸 숫자
+		int limit = pi.getContentLimit(); // 조회할 갯수 
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("styleMapper.selectStyleListAsDivisions", style, rowBounds);
 	}
 
 }

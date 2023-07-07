@@ -37,6 +37,7 @@ public class StyleController {
 	@GetMapping(value="/list/division", produces= "application/json; charset=utf-8")
 	@ResponseBody
 	public String selectStyleListAsDivisions(@RequestParam(value="cPage", defaultValue="1") int currentPage, Style style) {
+		
 		// 페이징 처리
 		// 조건에 따른 스타일 수 (전체일 경우 전체, 헤어의 경우 헤어만, 헤어의 컷의 경우 헤어의 컷만 count한 숫자가 리턴됨)
 		int listCount = styleService.selectListCountAsDivisions(style);
@@ -46,7 +47,7 @@ public class StyleController {
 
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, pageLimit, contentLimit);
 		
-		ArrayList<Style> list = styleService.selectStyleListAsDivisions(style);
+		ArrayList<Style> list = styleService.selectStyleListAsDivisions(pi, style);
 		
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.add("list", new Gson().toJsonTree(list));
