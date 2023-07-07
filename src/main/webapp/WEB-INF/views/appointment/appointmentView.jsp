@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- jstl 선언 구문 (taglib 지시어) 는 매 페이지마다 기술해야 함, include 로 가져오는게 없음 --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +31,11 @@
 
 .cell:hover {
   /* border: 1px solid #3D5AFE;*/
-  border: 1px solid #808080;
+  border: 1px solid black;
 }
 
 .cell.select {
-  background-color: #808080;
+  background-color: black;
   color: #fff;
 }
 
@@ -49,7 +51,7 @@ div.member:hover, div.menu:hover {
 }
 div.member.select, div.menu.select {
 	border-radius : 5px;
-	border : 2px solid #808080;
+	border : 2px solid black;
 	scale : 0.985;
 }
 
@@ -178,8 +180,9 @@ div.member.select, div.menu.select {
 				</section>  
 			  </div>
 			  
+			  <!-- 스타일 선택 부분 -->
 			  <div class="tab-pane fade container" id="style" role="tabpanel" aria-labelledby="style-tab">
-				
+			  	<!-- 카테고리 선택 부분 -->
 			    <section id="category" class="category container mt-5">
 					<div class="row">
 						<div class="col-8">
@@ -220,41 +223,18 @@ div.member.select, div.menu.select {
 				<!-- 페이지 로딩시 전체 스타일의 1장이 넘어와야함. -->
 				<section class="style">
 					<div class="container">
-						<div class="row justify-content-between align-items-start">
-							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5" style="width: 18rem;">
-							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
-							  <div class="card-body">
-							  <h5 class="card-title">Card title</h5>
-							  </div>
-							</div>
-							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
-							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
-							  <div class="card-body">
-								<h5 class="card-title">드레프트 컷</h5>
-							  </div>
-							</div>
-							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
-							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
-							  <div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							  </div>
-							</div>
-							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
-							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
-							  <div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							  </div>
-							</div>
-							<div class="card col-lg-2 col-md-4 d-flex align-items-stretch" style="width: 18rem;">
-							  <img src="https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg" class="card-img-top" alt="...">
-							  <div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							  </div>
-							</div>
+						<div class="d-flex justify-content-center">
+							<div class="ms-2 gap-4 justify-content-start row align-items-start"></div>
 						</div>
 					</div>
+
+					<!-- 스타일페이지 페이징 바 -->
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination justify-content-center">
+						
+					  </ul>
+					</nav>
 				</section>
-				
 				<div class="container mt-5 mb-5 row d-flex justify-content-center">
 
 					<button for class="btn btn-primary col-6" type="submit">
@@ -285,7 +265,6 @@ div.member.select, div.menu.select {
 					    </div>
 				   </div>
 			   </div>
-			   			
 		    </div>
 	    </div>
 	</section>
@@ -391,10 +370,18 @@ div.member.select, div.menu.select {
 			// section category의 버튼이 눌리면, 해당 조건에 대한 스타일 list 리턴 (페이지네이션? 필요함? 많으면 필요할 수 있지?)
 			// 데이터는 category의 div 중, class가 input group인 것에서 selected 된 것 속성 근데 이거 그냥 리스트로 못 넘기나?
 			$('#category button').click(function() {
-				selectStyleListAsDivisions();
+				selectStyleListAsDivisions(1);
 			});
 			
-			selectStyleListAsDivisions();
+			// 페이징바의 번호가 눌리면 파라미터로 cPage페이지값 전달해야함
+			// 아 진짜... 미치겠다. 
+			$('ul.pagination').on('click', 'div.page-link', function(event) {
+				
+				console.log($(event.target).text());
+			    selectStyleListAsDivisions($(event.target).text());
+			});
+			
+			selectStyleListAsDivisions(1);
 		});
 	    
 	    // 왜 상대경로로 안 먹히는지를 모르겠음.
@@ -467,10 +454,23 @@ div.member.select, div.menu.select {
  	  	}
 	    
 	    // /list/division
-	    function selectStyleListAsDivisions() {
+	    function selectStyleListAsDivisions(cPage) {
+
+	    	// 앞, 뒤 버튼이 눌린 것 > 둘 중 어떤 버튼이 눌렸는지를 알아야함. laquo / raquo
+	    	
+	    	// 이 값이 들어왔다는건, 현재 페이지는 무조건 1보다 크거나 maxPage보다 작다는 것임. 
+	    	if (cPage == '«') {
+	    		cPage = Number($('.page-item.active .page-link').text()) - 1;
+	    	} else if (cPage == '»') {
+	    		cPage = Number($('.page-item.active .page-link').text()) + 1;
+	    	}
+	    	
+	    	console.log(cPage);
 	    	let tmp = '';
+	    	let pageTmp = '';
+	    	
 	    	$.ajax({
-	    		url : "style/list/division",
+	    		url : "style/list/division?cPage=" + cPage,
 	    		data : {
 	    			division1 : $('select#division1').val(),
 	    			division2 : $('select#division2').val(),
@@ -480,14 +480,21 @@ div.member.select, div.menu.select {
 	    		success : function(result) {
 	    			let list = result.list;
 	    			let pi = result.pi;
-	    			
+					
+	    			console.log(list)
+	    			// 스타일
 	    			if(list.length == 0) {
-	    				tmp = '<div class="d-flex align-items-center justify-content-center">'
+	    				tmp = '<div class="d-flex align-items-center justify-content-center mb-5">'
 	    					+ '선택하신 조건에 맞는 스타일은 준비중입니다.'
 	    					+ '</div>'
+	    					
+	    					$('.style .container .row').html(tmp);
+	    					$('ul.pagination').html('');
+	    					return;
+	    					
 	    			} else {
 		    			for (let i = 0; i < list.length; i++) {
-							tmp = '<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5 menu" style="width: 18rem;">'
+							tmp += '<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5 menu" style="width: 18rem;">'
 							  	+ '<img src="'+ 'https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg' +'" class="card-img-top" alt="...">'
 							  	+ '<div class="card-body">'
 							  	+ '<h5 class="card-title">'+list[i].styleName+'</h5>'
@@ -495,8 +502,48 @@ div.member.select, div.menu.select {
 								+ '</div>';
 		    			}
 	    			}
-
+					
+	    			// 페이징바
+	    			// 이전
+	    			if (pi.currentPage == 1) {
+	    				pageTmp =  '<li class="page-item disabled">'
+					      		+ '<div class="page-link">'
+					        	+ '<span aria-hidden="true">&laquo;</span>'
+					      		+ '</div>'
+					    		+ '</li>'
+	    			} else {
+	    				pageTmp =  '<li class="page-item">'
+					      		+ '<div class="page-link">'
+					        	+ '<span aria-hidden="true">&laquo;</span>'
+						      	+ '</div>'
+							    + '</li>'
+	    			}
+	    			
+	    			// 페이지
+	    			for (let p = pi.startPage ; p <= pi.endPage; p++ ) {
+	    				if (p == pi.currentPage) {
+	    					pageTmp += '<li class="page-item active"><div class="page-link">'+ p +'</div></li>'
+	    				} else {
+	    					pageTmp += '<li class="page-item"><div class="page-link">'+ p +'</div></li>'
+	    				}
+	    			}
+	    			
+	    			// 이후
+	    			if (pi.currentPage == pi.maxPage || list.length == 0) {
+	    				pageTmp += '<li class="page-item disabled">'
+					      		+  '<div class="page-link">'
+					        	+  '<span aria-hidden="true">&raquo;</span>'
+						      	+  '</div>'
+							    +  '</li>'
+	    			} else {
+	    				pageTmp += '<li class="page-item">'
+					      		+  '<div class="page-link">'
+					        	+  '<span aria-hidden="true">&raquo;</span>'
+						      	+  '</div>'
+							    +  '</li>'
+	    			}
 	    			$('.style .container .row').html(tmp);
+	    			$('ul.pagination').html(pageTmp);
 	    		},
 	    		error : function() {
 	    			console.log('스타일 목록 호출 실패')

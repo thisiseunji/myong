@@ -18,7 +18,7 @@
 	</resultMap>
 	
 	<select id="selectDivision2ListAsDivision1" parameterType="String" resultType="String">
-		SELECT DIVISION2
+		SELECT DISTINCT DIVISION2
 		FROM TB_STYLE
 		WHERE DIVISION1=#{division1}
 	</select>

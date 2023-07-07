@@ -3,6 +3,7 @@ package com.kej.myong.style.model.service;
 import java.util.ArrayList;
 
 import com.kej.myong.style.model.vo.Style;
+import com.kej.myong.utils.model.vo.PageInfo;
 
 public interface StyleService {
 
@@ -10,6 +11,6 @@ public interface StyleService {
 
 	int selectListCountAsDivisions(Style style);
 
-	ArrayList<Style> selectStyleListAsDivisions(Style style);
+	ArrayList<Style> selectStyleListAsDivisions(PageInfo pi, Style style);
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kej.myong.style.model.dao.StyleDao;
 import com.kej.myong.style.model.vo.Style;
+import com.kej.myong.utils.model.vo.PageInfo;
 
 @Service
 public class StyleServiceImpl implements StyleService{
@@ -30,8 +31,8 @@ public class StyleServiceImpl implements StyleService{
 	}
 
 	@Override
-	public ArrayList<Style> selectStyleListAsDivisions(Style style) {
-		return styleDao.selectStyleListAsDivisions(sqlSession, style);
+	public ArrayList<Style> selectStyleListAsDivisions(PageInfo pi,Style style) {
+		return styleDao.selectStyleListAsDivisions(sqlSession, pi, style);
 	}
 
 	
