@@ -11,8 +11,11 @@
 		<result column="MEMBER_NO" property="memberNo"/>
 		<result column="STYLE_NO" property="styleNo"/>
 		<result column="CUSTOMER_NO" property="customerNo"/>
+		<!-- 응답시 디자이너와, 스타일 이름을 함께 리턴할 수 있도록 함 -->
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="STYLE_NAME" property="styleName"/>
 	</resultMap>
-	<!-- 예약 추기 -->
+	<!-- 예약 추가 -->
 	<insert id="insertAppointment" parameterType="Appointment">
 		INSERT INTO TB_APPOINTMENT ( APPOINTMENT_NO
 								   , SCHEDULE
@@ -31,4 +34,15 @@
 						   		   , #{styleNo}
 						   		   , #{customerNo})
 	</insert>
+	
+	<select id="selectAppointmentByCustomer" parameterType="Customer" resultMap="appointmentResultSet">
+		SELECT A.*, B.NICKNAME, C.STYLE_NAME
+		  FROM TB_APPOINTMENT A
+          JOIN TB_MEMBER B ON A.MEMBER_NO = B.MEMBER_NO
+          JOIN TB_STYLE C  ON A.STYLE_NO = C.STYLE_NO
+         WHERE a.CUSTOMER_NO = (SELECT CUSTOMER_NO
+                                  FROM TB_CUSTOMER
+                                 WHERE CUSTOMER_NAME = #{customerName}
+                                   AND PHONE = #{phone})
+	</select>
 </mapper>	

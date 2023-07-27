@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kej.myong.appointment.model.dao.AppointmentDao;
 import com.kej.myong.appointment.model.vo.Appointment;
+import com.kej.myong.customer.vo.Customer;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService{
@@ -26,6 +27,11 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Override
 	public void insertAppointment(Appointment appointment) {
 		appointmentDao.insertAppointment(sqlsession, appointment);
+	}
+
+	@Override
+	public ArrayList<Appointment> selectAppointmentByCustomer(Customer customer) {
+		return appointmentDao.selectAppointmentByCustomer(sqlsession, customer);
 	}
 
 }

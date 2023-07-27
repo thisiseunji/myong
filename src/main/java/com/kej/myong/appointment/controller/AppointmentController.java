@@ -31,20 +31,20 @@ public class AppointmentController {
 		// 그냥 페이지 로딩 되자마자 한 번 하고, 버튼 들어갈 때 마다 한 번 하고 하면 될 것 같은뎅  
 		return "appointment/appointmentView"; 
 	}
-	// 여기 해야함...
+	
 	@PostMapping
 	public void insertAppointment(Appointment appointment) {
 		// 사용자 정보를 이름과 번호로 검색해서 -> 사용자가 있으면 정보 받아오고
 		// 없으면 insert 해서 -> 예약정보 생성한다.
 		// 잘 넘어옴
-		System.out.println(appointment);
+
 		//Appointment(appointmentNo=0, schedule=2023-07-22 11:00 AM, createdAt=null, price=0, progress=null, memberNo=2, styleNo=26, customerNo=0, phone=01064569047, name=김은지)
 		Customer customer = new Customer();
 		customer.setCustomerName(appointment.getName());
 		customer.setPhone(appointment.getPhone());
-		System.out.println(customer);
+
 		Customer selectedCmr = customerService.selectCustomerByNameAndPhone(customer);
-		System.out.println(selectedCmr);
+
 		if (selectedCmr == null) { // 조회된 고객이 없으면 생성 후 조회
 			customerService.insertCustomer(customer); 
 			selectedCmr = customerService.selectCustomerByNameAndPhone(customer);
@@ -54,6 +54,7 @@ public class AppointmentController {
 		appointmentService.insertAppointment(appointment);
 		
 	}
+
 	
 	// 예약 페이지에서의 ajax 요청 
 	// 일정에 따른 디자이너 조회
@@ -63,6 +64,12 @@ public class AppointmentController {
 		ArrayList<Appointment> list = appointmentService.selectMemberListBySchedule(schedule);
 		return new Gson().toJson(list);
 	}
-
-
+	
+	// 고객정보에 기반한 예약내역 검색	
+	@GetMapping(value="/list", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String selectAppointmentByCustomer(Customer customer) {
+		ArrayList<Appointment> list = appointmentService.selectAppointmentByCustomer(customer);
+		return new Gson().toJson(list);
+	}
 }

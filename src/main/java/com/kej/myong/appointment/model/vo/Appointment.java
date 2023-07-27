@@ -15,7 +15,12 @@ public class Appointment {
 	private int memberNo;
 	private int styleNo;
 	private int customerNo;
+	
 	// 입력시 필요한 고객 데이터
 	private String phone;
 	private String name;
+	
+	// 응답시 필요한 데이터 ^.<
+	private String nickname;
+	private String styleName;
 }
