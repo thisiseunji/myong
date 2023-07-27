@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="customerMapper">
+  <resultMap id="customerResultSet" type="customer">
+  	<result column="CUSTOMER_NO" property="customerNo"/>
+  	<result column="CUSTOMER_NAME" property="customerName"/>
+  	<result column="PHONE" property="phone"/>
+  </resultMap>
+  
+  <!-- 고객 조회용 쿼리문-->
+  <select id="selectCustomerByNameAndPhone" parameterType="customer" resultMap="customerResultSet">
+  	SELECT * FROM TB_CUSTOMER
+  	WHERE CUSTOMER_NAME = #{customerName}
+  	  AND PHONE = #{phone}
+  </select>
+  
+  <!-- 고객정보 생성 -->
+  <insert id="insertCustomer" parameterType="customer">
+  	INSERT INTO TB_CUSTOMER (CUSTOMER_NO
+  						   , CUSTOMER_NAME
+  						   , PHONE)
+  					VALUES (SEQ_CUS.NEXTVAL
+  						   , #{customerName}
+  						   , #{phone})
+  </insert>
+</mapper>

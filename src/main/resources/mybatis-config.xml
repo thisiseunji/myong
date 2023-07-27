@@ -11,6 +11,7 @@
 		<typeAlias type="com.kej.myong.review.model.vo.Review" alias="review" />
 		<typeAlias type="com.kej.myong.appointment.model.vo.Appointment" alias="appointment" />
 		<typeAlias type="com.kej.myong.style.model.vo.Style" alias="style" />
+		<typeAlias type="com.kej.myong.customer.vo.Customer" alias="customer"/>
 	</typeAliases>
 
 	<mappers>
@@ -18,6 +19,7 @@
 		<mapper resource="/mappers/review-mapper.xml" />
 		<mapper resource="/mappers/appointment-mapper.xml" />
 		<mapper resource="/mappers/style-mapper.xml" />
+		<mapper resource="/mappers/customer-mapper.xml" />
 	</mappers>
 
 </configuration>

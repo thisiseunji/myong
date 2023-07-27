@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class temp {
-	/*@RequestMapping("chat")
+	@RequestMapping("chat")
 	public String chatPage() {
 		return "chat/chatView";
-	}*/
+	}
 	
 	@RequestMapping("designer/list")
 	public String designerListPage() {

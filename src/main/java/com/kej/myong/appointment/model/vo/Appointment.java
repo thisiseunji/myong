@@ -7,7 +7,8 @@ import lombok.Data;
 @Data
 public class Appointment {
     private int appointmentNo;
-	private Date schedule;
+    //private Date schedule;
+	private String schedule;
 	private Date createdAt;
 	private int price;
 	private String progress;

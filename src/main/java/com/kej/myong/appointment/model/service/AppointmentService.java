@@ -8,4 +8,6 @@ public interface AppointmentService {
 
 	ArrayList<Appointment> selectMemberListBySchedule(String schedule);
 
+	void insertAppointment(Appointment appointment);
+
 }
