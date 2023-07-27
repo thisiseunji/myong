@@ -23,4 +23,9 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentDao.selectMemberListBySchedule(sqlsession, schedule);
 	}
 
+	@Override
+	public void insertAppointment(Appointment appointment) {
+		appointmentDao.insertAppointment(sqlsession, appointment);
+	}
+
 }

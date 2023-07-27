@@ -76,7 +76,7 @@ div.member.select, div.menu.select {
       </div>
     </section><!-- End Breadcrumbs -->
   
-	<form method="post" action="../appointment">
+	<form method="post" action="<%= request.getContextPath() %>/appointment">
   	<section id="portfolio-details" class="portfolio-details">
   		<div class="container">
   			<!-- 탭 메뉴 -->
@@ -268,6 +268,12 @@ div.member.select, div.menu.select {
 		    </div>
 	    </div>
 	</section>
+	
+	<!-- 일정, 디자이너, 스타일 정보를 hidden으로 넘긴다. -->
+	<input type="hidden" name="schedule" id="schedule_input">
+	<input type="hidden" name="memberNo" id="designer_input">
+	<input type="hidden" name="styleNo" id="style_input">
+	
   </form>
 </main>
   	
@@ -345,18 +351,21 @@ div.member.select, div.menu.select {
 				    $('.cell').removeClass('select');
 				    $(this).addClass('select');
 				    selectDesignerList();
+				    $('input#schedule_input').val($('#datetimepicker1Input').val() + ' ' + $('.cell.select').text());
 	 	  		}
 			});
 			
 			$(document).on('click', '.member', function() {
 				$('.member').removeClass('select');
 				$(this).addClass('select');
+				$('input#designer_input').val($('.member.select').attr('id'));
 			});
 			
 			$(document).on('click', '.menu', function() {
 				console.log(this);
 				$('.menu').removeClass('select');
 				$(this).addClass('select');
+				$('input#style_input').val($('.menu.select').attr('id'));
 			});
 			
 			//- 검색 버튼을 눌렀을 때
@@ -374,7 +383,6 @@ div.member.select, div.menu.select {
 			});
 			
 			// 페이징바의 번호가 눌리면 파라미터로 cPage페이지값 전달해야함
-			// 아 진짜... 미치겠다. 
 			$('ul.pagination').on('click', 'div.page-link', function(event) {
 				
 				console.log($(event.target).text());
@@ -408,7 +416,7 @@ div.member.select, div.menu.select {
  	  					} else {
  	  						for(let i=0 ; i < list.length; i++) {
  		          				tmp += '<div class="col-lg-2 col-md-4 d-flex align-items-stretch">'
- 		          				    + '<div class="member" id="memeber'+ list[i].memberNo +'">'
+ 		          				    + '<div class="member" id="'+ list[i].memberNo +'">'
  		      						+ '<img src="'+ contextPath + list[i].profileImg +'">'
  		      						+ '<h4>'+ list[i].nickname +'</h4>'
  							        + '<span>'+ list[i].position+'</span>'
@@ -494,7 +502,7 @@ div.member.select, div.menu.select {
 	    					
 	    			} else {
 		    			for (let i = 0; i < list.length; i++) {
-							tmp += '<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5 menu" style="width: 18rem;">'
+							tmp += '<div class="card col-lg-2 col-md-4 d-flex align-items-stretch mb-5 menu" style="width: 18rem;" id="'+ list[i].styleNo + '">'
 							  	+ '<img src="'+ 'https://img.marieclairekorea.com/2022/05/mck_6295da528ab58-scaled.jpg' +'" class="card-img-top" alt="...">'
 							  	+ '<div class="card-body">'
 							  	+ '<h5 class="card-title">'+list[i].styleName+'</h5>'

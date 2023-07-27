@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
 <mapper namespace="appointmentMapper">
 	<resultMap id="appointmentResultSet" type="appointment">
 		<result column="APPOINTMENT_NO" property="appointmentNo"/>
@@ -11,5 +12,23 @@
 		<result column="STYLE_NO" property="styleNo"/>
 		<result column="CUSTOMER_NO" property="customerNo"/>
 	</resultMap>
-
-</mapper>
+	<!-- 예약 추기 -->
+	<insert id="insertAppointment" parameterType="Appointment">
+		INSERT INTO TB_APPOINTMENT ( APPOINTMENT_NO
+								   , SCHEDULE
+								   , CREATED_AT
+								   , PRICE
+								   , PROGRASS
+								   , MEMBER_NO
+								   , STYLE_NO
+								   , CUSTOMER_NO)
+						    VALUES ( SEQ_APM.NEXTVAL
+						   		   , TO_TIMESTAMP(#{schedule}, 'YYYY-MM-DD HH:MI AM', 'NLS_DATE_LANGUAGE=ENGLISH')
+						   		   , DEFAULT
+						   		   , 0
+						   		   , '예약 완료'
+						   		   , #{memberNo}
+						   		   , #{styleNo}
+						   		   , #{customerNo})
+	</insert>
+</mapper>	

@@ -14,4 +14,8 @@ public class AppointmentDao {
 		return (ArrayList)sqlsession.selectList("memberMapper.selectMemberListBySchedule", schedule);
 	}
 
+	public void insertAppointment(SqlSessionTemplate sqlsession, Appointment appointment) {
+		sqlsession.insert("appointmentMapper.insertAppointment", appointment);
+	}
+
 }

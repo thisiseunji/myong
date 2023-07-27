@@ -11,13 +11,7 @@
 </head>
 
 <body>
-	<jsp:include page="WEB-INF/views/common/header.jsp" />
-	
-	<c:if test="1>0">
-		<script>
-			alert("야!!! 여기 오냐고!");
-		</script>
-	</c:if>
+  <jsp:include page="WEB-INF/views/common/header.jsp" />
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
