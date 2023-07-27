@@ -7,5 +7,4 @@ public class Customer {
 	private int customerNo;
 	private String customerName;
 	private String phone;
-
 }

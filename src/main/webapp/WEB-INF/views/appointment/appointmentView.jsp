@@ -159,7 +159,6 @@ div.member.select, div.menu.select {
 				              <div class="col-md-2 col-4 my-1 px-2"><div class="cell py-1">8:30 PM</div></div>
 				            </div>
 				          </div>
-
 					</div>
 				</section>
 				<section id="team" class="team">
@@ -255,13 +254,35 @@ div.member.select, div.menu.select {
 					  <div class="row col text-end">
 						  <div class="col-5 row">
 							  <label for="phone" class="form-label col-3 ms-0 mt-2 me-2">휴대폰 번호</label>
-							  <input id="phone" class="form-control col" type="text" placeholder="ex) 010-0000-0000" aria-label="default input example">
+							  <input id="phone" class="form-control col" type="text" placeholder="ex) 01012341234" aria-label="default input example">
 						  </div>
 						  <div class="col-5 row">
 							  <label for="name" class="form-label col-2 mt-2 me-2">이름</label>
 							  <input id="name" class="form-control col ms-0" type="text" placeholder="김은지" aria-label="default input example">
 						  </div>
-						  <button class="col-2 btn btn-primary ms-4 me-0">예약내역 확인</button>
+						  <input type="button" class="col-2 btn btn-primary ms-4 me-0" id="check-apm" value="예약내역 확인"/>
+					    </div>
+					    <div class="row col mt-5">
+					    	<table class="table text-center">
+							  <thead class="table-stripe">
+							        <tr>
+							          <th scope="col">#</th>
+								      <th scope="col">일정</th>
+								      <th scope="col">디자이너</th>
+								      <th scope="col">스타일</th>
+								      <th scope="col"></th>
+								    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <th scope="row">1</th>
+							      <td>2023-07-28 금 10:00 AM</td>
+							      <td><a class="link-dark" href="#">리찌알맹</a></td>
+							      <td><a class="link-dark" href="#">투블럭 컷</a></td>
+							      <td class="text-end cancel"><button class="btn btn-primary btn-sm">예약 취소</button></td>
+							    </tr>
+							  </tbody>
+							</table>
 					    </div>
 				   </div>
 			   </div>
@@ -342,8 +363,7 @@ div.member.select, div.menu.select {
 			// 날짜는 무조건 있어야함. 둘 중에 하나라도 비어있으면 안돼
 			// 1. 날짜가 있는지 확인
 			// 2. 날짜와 시간이 모두 선택됐다면, 예약테이블에 그 날, 그 시간에 있는 예약을 모두 찾아. 
-			// 3. 전체 디자이너 중, 이미 예약이 있는 사람이 아니고, 날짜로 : 그 날 휴일이 아니고, 시간: 근무 시간이 선택된 시간 범위를 포함하는 디자이너를 모두 리턴해.
-			// 그럼 끝이다.
+			// 3. 전체 디자이너 중, 이미 예약이 있는 사람이 아니고, 날짜로 : 그 날 휴일이 아니고, 시간: 근무 시간이 선택된 시간 범위를 포함하는 디자이너를 모두 리턴
 			$('.cell').click(function(){
 	 	  		if($('#datetimepicker1Input').val() == "") {
 	 	  			alert("날짜를 선택하세요.");
@@ -362,7 +382,6 @@ div.member.select, div.menu.select {
 			});
 			
 			$(document).on('click', '.menu', function() {
-				console.log(this);
 				$('.menu').removeClass('select');
 				$(this).addClass('select');
 				$('input#style_input').val($('.menu.select').attr('id'));
@@ -387,6 +406,12 @@ div.member.select, div.menu.select {
 				
 				console.log($(event.target).text());
 			    selectStyleListAsDivisions($(event.target).text());
+			});
+			
+			// 예약확인 버튼 클릭시
+			$('#check-apm').click(function() {
+				console.log("여기는 온다는거지?");
+				selectAppointmentAsCustomer();
 			});
 			
 			selectStyleListAsDivisions(1);
@@ -559,6 +584,43 @@ div.member.select, div.menu.select {
 	    	});
 	    	
 	    }
+	    
+    	function selectAppointmentAsCustomer() {
+	    	$.ajax({
+	    		url : "appointment/list",
+	    		data : {
+	    			// customer로 들어가는지 확인
+	    			customerName : $('input#name').val(),
+	    			phone : $('input#phone').val()
+	    		},
+	    		success : function(list) {
+	    			
+	    			let tmp = '';
+	    			if(list.length == 0) {
+	    				tmp = '해당 고객에 대한 예약 내역이 존재하지 않습니다.'
+	    			} else {
+	    				for(i = 0; i < list.length; i++) {
+	    					tmp += '<tr>'
+						      	 + '<th scope="row">' + (i+1) + '</th>'
+						         + '<td>' + list[i].schedule + '</td>'
+						         + '<td><a class="link-dark" href="' + 'member/'+ list[i].memberNo + '">'+ list[i].nickname + '</a></td>' // 상세페이지로 이동
+						      	 + '<td><a class="link-dark" href="' + 'style/'+ list[i].styleNo + '">' + list[i].styleName + '</a></td>'
+						         + '<td class="text-end cancel"><button class="btn btn-primary btn-sm" id="btn'+ list[i].appointmentNo + '">예약 취소</button></td>'
+						         + '</tr>'
+	    				}
+	    			}
+	    			
+	    			$('div#appointment table tbody').html(tmp);
+	    			return;
+	    				
+	    		},
+	    		error : function() {
+	    			console.log('예약 목록 호출 실패')
+	    		}
+	    		
+	    		
+	    	});
+    	}
 	    
 	</script>
 <body>

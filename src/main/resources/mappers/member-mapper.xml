@@ -56,7 +56,7 @@
 	<select id="selectMemberListBySchedule" parameterType="string" resultMap="memberResultSet">
 		SELECT * 
 		  FROM TB_MEMBER
-		 WHERE MEMBER_ID NOT IN (SELECT MEMBER_ID 
+		 WHERE MEMBER_NO NOT IN (SELECT MEMBER_NO 
 		                           FROM TB_APPOINTMENT
 		                          WHERE SCHEDULE = TO_TIMESTAMP(#{schedule}, 'YYYY-MM-DD HH:MI AM', 'NLS_DATE_LANGUAGE=ENGLISH'))
 		   AND TO_CHAR(TO_DATE(SUBSTR(#{schedule}, 1, 10), 'YYYY-MM-DD'), 'D') != DAY_OFF
