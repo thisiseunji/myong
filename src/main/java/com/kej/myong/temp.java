@@ -10,10 +10,11 @@ public class temp {
 		return "chat/chatView";
 	}
 	
-	@RequestMapping("designer/list")
-	public String designerListPage() {
-		return "designer/designerListView";
-	}
+	//
+//	@RequestMapping("designer")
+//	public String designerListPage() {
+//		return "designer/designerListView";
+//	}
 	
 	@RequestMapping("designer/detail")
 	public String designerDetailPage() {

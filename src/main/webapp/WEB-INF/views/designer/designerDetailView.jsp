@@ -32,11 +32,11 @@
 	    	
 	   		<div class="container mt-5">
 		   		<div class="row row-cols-2">
-		   			<img class="col rounded img-fluid" src="https://t1.daumcdn.net/cfile/tistory/993E05425CCACAE412" style="max-width:500px;">
+		   			<img class="col rounded img-fluid" src="<%= request.getContextPath() %>${designer.getProfileImg()}" style="max-width:500px;">
 		   		
 		   			<div class="col justify-content-end align-items-center">
-		   				<span class="fs-3">이요원</span>
-		   				<div>디자이너</div>
+		   				<span class="fs-3">${designer.getNickname()}</span>
+		   				<div>${designer.getPosition()}</div>
 		   				<button class="btn btn-primary" id="startChat">이 디자이너와 스타일 상담하기</button>
 		   			</div>
 		   		

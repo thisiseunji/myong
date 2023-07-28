@@ -40,6 +40,10 @@
 <link href="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/css/tempus-dominus.css" rel="stylesheet" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 
+
+<!-- jstl -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- =======================================================
 * Template Name: Eterna
 * Updated: Mar 10 2023 with Bootstrap v5.2.3
@@ -79,7 +83,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="active" href="<%=request.getContextPath()%>/appointment">예약</a></li>
-          <li><a href="<%=request.getContextPath()%>/designer/list">디자이너</a></li>
+          <li><a href="<%=request.getContextPath()%>/designer">디자이너</a></li>
           <li class="dropdown"><a href="<%=request.getContextPath()%>/style/list"><span>서비스</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li class="dropdown"><a href="<%=request.getContextPath()%>/style/list?c1=hair"><span>헤어</span> <i class="bi bi-chevron-right"></i></a>
