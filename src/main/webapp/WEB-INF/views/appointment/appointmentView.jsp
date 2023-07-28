@@ -275,12 +275,7 @@ div.member.select, div.menu.select {
 							  </thead>
 							  <tbody>
 							    <tr>
-							      <th scope="row">1</th>
-							      <td>2023-07-28 금 10:00 AM</td>
-							      <td><a class="link-dark" href="#">리찌알맹</a></td>
-							      <td><a class="link-dark" href="#">투블럭 컷</a></td>
-							      <td class="text-end cancel"><button class="btn btn-primary btn-sm">예약 취소</button></td>
-							    </tr>
+								</tr>
 							  </tbody>
 							</table>
 					    </div>
@@ -603,7 +598,7 @@ div.member.select, div.menu.select {
 	    					tmp += '<tr>'
 						      	 + '<th scope="row">' + (i+1) + '</th>'
 						         + '<td>' + list[i].schedule + '</td>'
-						         + '<td><a class="link-dark" href="' + 'member/'+ list[i].memberNo + '">'+ list[i].nickname + '</a></td>' // 상세페이지로 이동
+						         + '<td><a class="link-dark" href="' + 'designer/'+ list[i].memberNo + '">'+ list[i].nickname + '</a></td>' // 상세페이지로 이동
 						      	 + '<td><a class="link-dark" href="' + 'style/'+ list[i].styleNo + '">' + list[i].styleName + '</a></td>'
 						         + '<td class="text-end cancel"><button class="btn btn-primary btn-sm" id="btn'+ list[i].appointmentNo + '">예약 취소</button></td>'
 						         + '</tr>'
