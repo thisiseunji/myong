@@ -32,6 +32,12 @@ public class DesignerController {
 	@GetMapping("/{id}")
 	public String selectDesignerById(@PathVariable int id, Model model) {
 		Member designer = designerService.selectDesignerById(id);
+		
+		String startTime = designer.getStartTime().substring(11, 16);
+		designer.setStartTime(startTime);
+		String endTime = designer.getEndTime().substring(11, 16);
+		designer.setEndTime(endTime);
+		
 		model.addAttribute("designer", designer);
 
 		return "designer/designerDetailView";
